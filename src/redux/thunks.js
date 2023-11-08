@@ -3,12 +3,16 @@ import { getCars } from "../services/api";
 
 export const getCarsThunk = createAsyncThunk(
   'user/registerThunk',
-  async (_, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const response = await getCars();
-      return response ;
+      const response = await getCars(params);
+      if (response.length) {
+        return response ;
+      } else {
+        throw new Error ('The are no more data')
+      }
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
   )
