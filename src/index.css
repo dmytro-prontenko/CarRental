@@ -31,6 +31,11 @@ h1,h2,h3,h4,h5,h6 {
   padding: 0;
 }
 
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
 p {
   margin: 0;
   padding: 0;

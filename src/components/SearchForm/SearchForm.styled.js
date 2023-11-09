@@ -2,8 +2,20 @@ import styled from "styled-components";
 
 export const StyledForm = styled.form`
   display: flex;
+  justify-content: center;
   align-items: flex-end;
   gap: 18px;
+  margin-top: 40px;
+`;
+
+export const StyledSpan = styled.span`
+  color: #8a8a89;
+
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
 `;
 
 export const StyledInputWrapper = styled.div`
@@ -17,10 +29,10 @@ export const StyledMileageFromInput = styled.input`
   padding: 14px 9px 14px 24px;
   align-items: center;
   flex-shrink: 0;
-  outline:none;
+  outline: none;
 
   border-radius: 14px 0px 0px 14px;
-  border:none;
+  border: none;
   border-right: 1px solid rgba(138, 138, 137, 0.2);
 
   background: #f7f7fb;
@@ -40,10 +52,10 @@ export const StyledMileageToInput = styled.input`
   padding: 14px 9px 14px 24px;
   align-items: center;
   flex-shrink: 0;
-  outline:none;
+  outline: none;
 
   border-radius: 0px 14px 14px 0px;
-  border:none;
+  border: none;
   /* border-right: 1px solid rgba(138, 138, 137, 0.2); */
 
   background: #f7f7fb;

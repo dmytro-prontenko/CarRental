@@ -7,6 +7,7 @@ import {
   StyledMileageFromInput,
   StyledMileageToInput,
   StyledSearchButton,
+  StyledSpan,
 } from "./SearchForm.styled";
 import { makeStyles, priceStyles } from "./Select.styles";
 
@@ -68,7 +69,7 @@ const SearchForm = () => {
     <div>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <label>
-          <span>Car brand</span>
+          <StyledSpan>Car brand</StyledSpan>
           <Controller
             name="make"
             control={control}
@@ -85,7 +86,7 @@ const SearchForm = () => {
           />
         </label>
         <label>
-          <span>Price / 1 hour</span>
+          <StyledSpan>Price / 1 hour</StyledSpan>
           <Controller
             name="price"
             control={control}
@@ -103,7 +104,7 @@ const SearchForm = () => {
           />
         </label>
         <label>
-          <span>Сar mileage / km</span>
+          <StyledSpan>Сar mileage / km</StyledSpan>
           <StyledInputWrapper>
             <StyledMileageFromInput
               type="number"

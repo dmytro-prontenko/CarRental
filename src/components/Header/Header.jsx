@@ -1,18 +1,17 @@
 import { NavLink } from "react-router-dom";
-import { StyledNavigationLinks } from "./Header.styled";
+import { StyledLogo, StyledNavBar, StyledNavLink, StyledNavigationLinks } from "./Header.styled";
+import logo from '../../images/logo.png'
 
 const Header = () => {
   return (
-    <nav>
-      <nav>
-        <NavLink to="/">Here must be a logo</NavLink>
+    <StyledNavBar>
+        <StyledLogo to="/"><img src={logo} alt="logo" width={'100px'}/></StyledLogo>
         <StyledNavigationLinks>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/catalog">Catalog</NavLink>
-          <NavLink to="/favorites">Favorites</NavLink>
+          <StyledNavLink to="/">Home</StyledNavLink>
+          <StyledNavLink to="/catalog">Catalog</StyledNavLink>
+          <StyledNavLink to="/favorites">Favorites</StyledNavLink>
         </StyledNavigationLinks>
-      </nav>
-    </nav>
+    </StyledNavBar>
   );
 };
 
