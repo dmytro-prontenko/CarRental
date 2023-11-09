@@ -24,6 +24,8 @@ export const LoadMoreBtn = styled.button`
   border: none;
   background: transparent;
   cursor:pointer;
+  margin-top: 50px;
+  margin-bottom: 150px;
 
   font-family: Manrope;
   font-size: 16px;

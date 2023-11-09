@@ -63,6 +63,7 @@ export const StyledLearnMoreBtn = styled.button`
   align-items: center;
   flex-shrink: 0;
 
+
   border: none;
   border-radius: 12px;
   background: #3470ff;
