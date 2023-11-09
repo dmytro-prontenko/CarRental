@@ -53,7 +53,7 @@ export const StyledCarInfo = styled.div`
   line-height: 18px;
 `;
 
-export const StyledLearenMoreBtn = styled.button`
+export const StyledLearnMoreBtn = styled.button`
   width: 100%;
   display: flex;
   width: 274px;

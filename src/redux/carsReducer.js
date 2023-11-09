@@ -10,15 +10,16 @@ const initialState = {
   page: 1,
   limit: 12,
   reachOut: false,
+  modalId:null
 };
 
 export const carSlicer = createSlice({
   name: "cars",
   initialState,
   reducers: {
-    setPage: (state) => {
-      state.page++;
-    },
+    setModalId: (state, {payload}) => {
+      state.modalId = payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -34,4 +35,4 @@ export const carSlicer = createSlice({
 });
 
 export const carsReducer = carSlicer.reducer;
-export const { setPage } = carSlicer.actions;
+export const { setModalId } = carSlicer.actions;
