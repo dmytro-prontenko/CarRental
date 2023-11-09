@@ -9,6 +9,11 @@
   font-family: "Montserrat", sans-serif;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
+
 a {
 }
 a:hover {

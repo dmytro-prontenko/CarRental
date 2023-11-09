@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   inset: 0;
   z-index: 1111120;

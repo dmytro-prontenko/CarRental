@@ -17,10 +17,12 @@ const Modal = ({ onCloseModal, children }) => {
     }
   };
 
+  document.body.classList.add('modal-open');
   document.addEventListener("keydown", onEscKeyPress);
 
   const cleanup = () => {
     document.removeEventListener("keydown", onEscKeyPress);
+    document.body.classList.remove('modal-open');
   };
 
   return (
