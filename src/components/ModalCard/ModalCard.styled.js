@@ -5,7 +5,7 @@ export const StyledModalCard = styled.div`
   flex-direction: column;
 `;
 export const StyledImage = styled.img`
-  width: 461px;
+  width: 100%;
   height: 248px;
   border-radius: 14px;
   object-fit: cover;

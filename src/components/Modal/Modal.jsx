@@ -1,32 +1,35 @@
-import { Content, StyledButtonClose, Wrapper } from './Modal.styled';
+import { Content, StyledButtonClose, Wrapper } from "./Modal.styled";
+import sprite from '../../images/sprite.svg';
 
-const Modal = ({onCloseModal, children}) => {
-  const onBackDropClick = e => {
+const Modal = ({ onCloseModal, children }) => {
+  const onBackDropClick = (e) => {
     if (e.currentTarget === e.target) {
       onCloseModal();
       cleanup();
     }
   };
 
-  const onEscKeyPress = e => {
-    if (e.key === 'Escape') {
+  const onEscKeyPress = (e) => {
+    if (e.key === "Escape") {
       onCloseModal();
       cleanup();
     }
   };
 
-  document.addEventListener('keydown', onEscKeyPress);
+  document.addEventListener("keydown", onEscKeyPress);
 
   const cleanup = () => {
-    document.removeEventListener('keydown', onEscKeyPress);
+    document.removeEventListener("keydown", onEscKeyPress);
   };
 
   return (
     <Wrapper onClick={onBackDropClick}>
       <Content>
-        <StyledButtonClose onClick={onCloseModal}>          <svg width="12" height="12">
-            <use href={`../../images/close.svg`} />
-          </svg></StyledButtonClose>
+        <StyledButtonClose onClick={onCloseModal}>
+        <svg width="18" height="18">
+          <use href={`${sprite}#icon-close`} />
+        </svg>
+        </StyledButtonClose>
         {children}
       </Content>
     </Wrapper>
@@ -39,4 +42,3 @@ const Modal = ({onCloseModal, children}) => {
 // };
 
 export default Modal;
-

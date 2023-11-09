@@ -14,7 +14,7 @@ export const Content = styled.div`
   display: flex;
   place-items:center;
   background-color: white;
-  width: 538px;
+  width: 541px;
   height: 752px;
   border-radius: 24px;
   background: #fff;
@@ -34,9 +34,8 @@ export const Childrens = styled.div`
 
 export const StyledButtonClose = styled.button`
   position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 12px 20px;
+  top: 16px;
+  right: 16px;
   background-color: transparent;
   /* color: white; */
   border: none;
@@ -45,7 +44,6 @@ export const StyledButtonClose = styled.button`
   transition: all 0.1s ease-in;
   &:hover {
     cursor: pointer;
-    box-shadow: 2px 2px 3px 1px gray;
-    /* background-color: darkblue; */
+    /* box-shadow: 2px 2px 3px 1px gray; */
   }
 `;
