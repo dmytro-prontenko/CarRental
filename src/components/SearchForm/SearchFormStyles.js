@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import Select from 'react-select';
+import Select from "react-select";
 
 export const StyledForm = styled.form`
-display: flex;
-`
+  display: flex;
+  gap: 18px;
+`;
 
 export const StyledInputWrapper = styled.div`
-display: flex;
-`
+  display: flex;
+`;
 
 export const StyledMileageFromInput = styled.input`
   height: 48px;

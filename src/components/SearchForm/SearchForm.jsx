@@ -1,12 +1,13 @@
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
+import { toast } from "react-toastify";
 import {
   StyledForm,
   StyledInputWrapper,
   StyledMileageFromInput,
   StyledMileageToInput,
 } from "./SearchFormStyles";
-import { toast } from "react-toastify";
+import { makeStyles, priceStyles } from './Select.styles';
 
 const price = [];
 for (let index = 1; index <= 15; index++) {
@@ -56,7 +57,7 @@ const SearchForm = () => {
 
   const onSubmit = ({ make, price, mileageFrom, mileageTo }) => {
     if (make || price || mileageFrom || mileageTo) {
-      console.log(make.value, price.value)
+      console.log(make?.value, price.value)
     } else {
       toast.info("You must choose at least one filed for filtering")
     }
@@ -66,12 +67,13 @@ const SearchForm = () => {
     <div>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <label>
-          {/* <span>Car brand</span> */}
+          <span>Car brand</span>
           <Controller
             name="make"
             control={control}
             render={({ field }) => (
               <Select
+              styles={makeStyles}
                 {...field}
                 options={makes}
                 isClearable={true}
@@ -81,7 +83,8 @@ const SearchForm = () => {
             )}
           />
         </label>
-        {/* <label> */}
+        <label>
+        <span>Price / 1 hour</span>
         <Controller
           name="price"
           control={control}
@@ -90,29 +93,17 @@ const SearchForm = () => {
               {...register("price", {
               })}
               placeholder="Price"
+              styles={priceStyles}
               {...field}
               options={price}
+              isClearable={true}
             />
           )}
         />
-        {/* <span>Price / 1 hour</span> */}
-        {/* <Controller
-            name="price"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...field}
-                options={price}
-                isClearable={true}
-                isSearchable={true}
-                placeholder="To $"
-              />
-            )}
-          />
-          {errors.price && <p>{errors.price.message}</p>} */}
-        {/* </label> */}
+        
+        </label>
         <label>
-          {/* <span>Сar mileage / km</span> */}
+          <span>Сar mileage / km</span>
           <StyledInputWrapper>
             <StyledMileageFromInput
               type="number"
