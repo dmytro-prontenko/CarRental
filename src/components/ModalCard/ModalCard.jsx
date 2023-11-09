@@ -31,11 +31,9 @@ const ModalCard = () => {
     img,
     make,
     model,
-    price,
     year,
     rentalPrice,
     address,
-    rentalCompany,
     type,
     id,
     functionalities,
@@ -82,6 +80,9 @@ const ModalCard = () => {
         </StyledAccessoriesTitle>
         <StyledAccessoriesList>
           {accessories.map((accessory, index) => (
+            <StyledListItem key={index}>{accessory}</StyledListItem>
+          ))}
+          {functionalities.map((accessory, index) => (
             <StyledListItem key={index}>{accessory}</StyledListItem>
           ))}
         </StyledAccessoriesList>
