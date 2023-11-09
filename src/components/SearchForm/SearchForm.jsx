@@ -80,7 +80,7 @@ const SearchForm = () => {
                 options={makes}
                 isClearable={true}
                 isSearchable={true}
-                placeholder="Brand"
+                placeholder="Choose a brand"
               />
             )}
           />
@@ -93,7 +93,7 @@ const SearchForm = () => {
             render={({ field }) => (
               <Select
                 {...register("price", {})}
-                placeholder="Price"
+                placeholder="To $"
                 styles={priceStyles}
                 {...field}
                 options={price}

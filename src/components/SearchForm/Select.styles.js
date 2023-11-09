@@ -2,6 +2,15 @@ export const makeStyles = {
   select: (customStyles) => ({
     ...customStyles,
   }),
+  placeholder:(customStyles) =>({
+    ...customStyles,
+    color: "#8A8A89",
+    fontFamily: "Manrope",
+    fontSize: "18px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "20px",
+  }),
   option: (customStyles) => ({
     ...customStyles,
   }),
@@ -44,6 +53,12 @@ export const makeStyles = {
   singleValue: (customStyles) => ({
     ...customStyles,
     color: "#121417",
+
+    fontFamily: "Manrope",
+    fontSize: "18px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "20px",
   }),
   container: (customStyles) => ({
     ...customStyles,
@@ -61,6 +76,15 @@ export const priceStyles = {
   select: (customStyles) => ({
     ...customStyles,
   }),
+  placeholder:(customStyles) =>({
+    ...customStyles,
+    color: "#8A8A89",
+    fontFamily: "Manrope",
+    fontSize: "18px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "20px",
+  }),
   option: (customStyles) => ({
     ...customStyles,
   }),
@@ -73,7 +97,7 @@ export const priceStyles = {
     border: "none",
 
     //*
-    width: "153px",
+    width: "169px",
     textAlign: "start",
     //*
 
@@ -104,6 +128,11 @@ export const priceStyles = {
   singleValue: (customStyles) => ({
     ...customStyles,
     color: "#121417",
+    fontFamily: "Manrope",
+    fontSize: "18px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "20px",
     "&::before": { content: '"To "' },
     "&::after": { content: '"$ "' },
   }),
