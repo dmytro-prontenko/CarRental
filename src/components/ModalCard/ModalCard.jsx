@@ -4,9 +4,9 @@ import notFoundImg from "../../images/noFoundCar.png";
 import {
   StyledAccessoriesList,
   StyledAccessoriesTitle,
-  StyledAccessoriesWrapprer,
+  StyledAccessoriesWrapper,
   StyledCarInfoList,
-  StyledCardheader,
+  StyledCardHeader,
   StyledConditionItem,
   StyledConditionSpan,
   StyledConditionWrapper,
@@ -26,7 +26,6 @@ import {
 const ModalCard = () => {
   const searchId = useSelector((state) => state.cars.modalId);
   const cars = useSelector((state) => state.cars.cars);
-  console.log(cars);
   const {
     img,
     make,
@@ -54,27 +53,27 @@ const ModalCard = () => {
         }}
       />
 
-      <StyledCardheader>
+      <StyledCardHeader>
         {make}
         <StyledSpan>{model}, </StyledSpan>
         {year}
-      </StyledCardheader>
+      </StyledCardHeader>
 
       <StyledCarInfoList>
         <StyledInfoFirstRow>
-          <StyledListItem>{address.split(", ")[1]}</StyledListItem>
-          <StyledListItem>{address.split(", ")[2]}</StyledListItem>
-          <StyledListItem>Id:{id}</StyledListItem>
-          <StyledListItem>Year:{year} </StyledListItem>
-          <StyledListItem>Type:{type}</StyledListItem>
+          <StyledListItem key={nanoid()}>{address.split(", ")[1]}</StyledListItem>
+          <StyledListItem key={nanoid()}>{address.split(", ")[2]}</StyledListItem>
+          <StyledListItem key={nanoid()}>Id:{id}</StyledListItem>
+          <StyledListItem key={nanoid()}>Year:{year} </StyledListItem>
+          <StyledListItem key={nanoid()}>Type:{type}</StyledListItem>
         </StyledInfoFirstRow>
         <StyledInfoSecondRow>
-          <StyledListItem>Fuel Consumption:{fuelConsumption}</StyledListItem>
-          <StyledListItem>Engine Size:{engineSize}</StyledListItem>
+          <StyledListItem key={nanoid()}>Fuel Consumption:{fuelConsumption}</StyledListItem>
+          <StyledListItem key={nanoid()}>Engine Size:{engineSize}</StyledListItem>
         </StyledInfoSecondRow>
       </StyledCarInfoList>
       <StyledDescription>{description}</StyledDescription>
-      <StyledAccessoriesWrapprer>
+      <StyledAccessoriesWrapper>
         <StyledAccessoriesTitle>
           Accessories and functionalities:
         </StyledAccessoriesTitle>
@@ -86,14 +85,22 @@ const ModalCard = () => {
             <StyledListItem key={index}>{accessory}</StyledListItem>
           ))}
         </StyledAccessoriesList>
-      </StyledAccessoriesWrapprer>
+      </StyledAccessoriesWrapper>
 
       <StyledRentConditions>
         <StyledRentTitle>Rental Conditions:</StyledRentTitle>
         <StyledConditionsList>
           {rentalConditions.split("\n").map((condition) => (
             <StyledConditionItem key={nanoid()}>
-              <StyledConditionWrapper>{condition}</StyledConditionWrapper>
+              <StyledConditionWrapper>{
+                condition.includes(":")
+                ? (
+                  <span>
+                    {condition.split(":")[0]}: <StyledConditionSpan>{condition.split(":")[1]}</StyledConditionSpan>
+                  </span>
+                )
+                : condition}
+              </StyledConditionWrapper>
             </StyledConditionItem>
           ))}
 

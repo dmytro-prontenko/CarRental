@@ -1,4 +1,5 @@
 import { Content, StyledButtonClose, Wrapper } from "./Modal.styled";
+import PropTypes from 'prop-types';
 import sprite from '../../images/sprite.svg';
 
 const Modal = ({ onCloseModal, children }) => {
@@ -36,9 +37,9 @@ const Modal = ({ onCloseModal, children }) => {
   );
 };
 
-// Modal.propTypes = {
-//   children: PropTypes.node,
-//   onCloseModal: PropTypes.func,
-// };
+Modal.propTypes = {
+  children: PropTypes.node,
+  onCloseModal: PropTypes.func,
+};
 
 export default Modal;

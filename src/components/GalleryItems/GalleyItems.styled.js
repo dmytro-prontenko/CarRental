@@ -4,7 +4,6 @@ export const StyledCard = styled.li`
   width: 274px;
   height: 426px;
   display: flex;
-  /* gap: 28px; */
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -20,8 +19,6 @@ export const StyledImg = styled.img`
 `;
 
 export const StyledCarTitle = styled.div`
-  /* display: flex;
-  justify-content: space-between; */
   display: grid;
   grid-template-columns: repeat(2, auto);
   justify-content: space-between;

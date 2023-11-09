@@ -12,7 +12,7 @@ export const StyledImage = styled.img`
   margin-bottom: 14px;
 `;
 
-export const StyledCardheader = styled.div`
+export const StyledCardHeader = styled.div`
   display: flex;
   gap: 3px;
   color: #121417;
@@ -67,7 +67,7 @@ export const StyledDescription = styled.div`
   margin-bottom: 24px;
 `;
 
-export const StyledAccessoriesWrapprer = styled.div`
+export const StyledAccessoriesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;

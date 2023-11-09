@@ -6,8 +6,9 @@ import {
   StyledInputWrapper,
   StyledMileageFromInput,
   StyledMileageToInput,
-} from "./SearchFormStyles";
-import { makeStyles, priceStyles } from './Select.styles';
+  StyledSearchButton,
+} from "./SearchForm.styled";
+import { makeStyles, priceStyles } from "./Select.styles";
 
 const price = [];
 for (let index = 1; index <= 15; index++) {
@@ -57,9 +58,9 @@ const SearchForm = () => {
 
   const onSubmit = ({ make, price, mileageFrom, mileageTo }) => {
     if (make || price || mileageFrom || mileageTo) {
-      console.log(make?.value, price.value)
+      console.log(make?.value, price.value);
     } else {
-      toast.info("You must choose at least one filed for filtering")
+      toast.info("You must choose at least one filed for filtering");
     }
   };
 
@@ -73,7 +74,7 @@ const SearchForm = () => {
             control={control}
             render={({ field }) => (
               <Select
-              styles={makeStyles}
+                styles={makeStyles}
                 {...field}
                 options={makes}
                 isClearable={true}
@@ -84,23 +85,22 @@ const SearchForm = () => {
           />
         </label>
         <label>
-        <span>Price / 1 hour</span>
-        <Controller
-          name="price"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...register("price", {
-              })}
-              placeholder="Price"
-              styles={priceStyles}
-              {...field}
-              options={price}
-              isClearable={true}
-            />
-          )}
-        />
-        
+          <span>Price / 1 hour</span>
+          <Controller
+            name="price"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...register("price", {})}
+                placeholder="Price"
+                styles={priceStyles}
+                {...field}
+                options={price}
+                isClearable={true}
+                isSearchable={true}
+              />
+            )}
+          />
         </label>
         <label>
           <span>Сar mileage / km</span>
@@ -118,8 +118,7 @@ const SearchForm = () => {
           </StyledInputWrapper>
           {errors.mileageTo && <p>{errors.mileageTo.message}</p>}
         </label>
-
-        <button>search</button>
+          <StyledSearchButton>Search</StyledSearchButton>
       </StyledForm>
     </div>
   );

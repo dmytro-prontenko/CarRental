@@ -10,6 +10,7 @@ export const makeStyles = {
     height: "48px",
     borderRadius: "14px",
     background: "#F7F7FB",
+    border: "none",
 
     //*
     width: "224px",
@@ -42,8 +43,7 @@ export const makeStyles = {
   }),
   singleValue: (customStyles) => ({
     ...customStyles,
-    color:'#121417',
-    
+    color: "#121417",
   }),
   container: (customStyles) => ({
     ...customStyles,
@@ -60,11 +60,9 @@ export const makeStyles = {
 export const priceStyles = {
   select: (customStyles) => ({
     ...customStyles,
-    
   }),
   option: (customStyles) => ({
     ...customStyles,
-    
   }),
   control: (customStyles) => ({
     ...customStyles,
@@ -72,6 +70,7 @@ export const priceStyles = {
     height: "48px",
     borderRadius: "14px",
     background: "#F7F7FB",
+    border: "none",
 
     //*
     width: "153px",
@@ -85,19 +84,15 @@ export const priceStyles = {
     ...customStyles,
     paddingTop: "4px",
     paddingLeft: "20px",
-    
-
   }),
 
   indicatorSeparator: (customStyles) => ({
     ...customStyles,
     border: "none",
-    
   }),
   dropdownIndicator: (customStyles) => ({
     ...customStyles,
     color: "#121417",
-    
   }),
   menu: (customStyles) => ({
     ...customStyles,
@@ -108,10 +103,9 @@ export const priceStyles = {
   }),
   singleValue: (customStyles) => ({
     ...customStyles,
-    color:'#121417',
-    '&::before':{content:'"To "'},
-    '&::after':{content:'"$ "'}
-    
+    color: "#121417",
+    "&::before": { content: '"To "' },
+    "&::after": { content: '"$ "' },
   }),
   container: (customStyles) => ({
     ...customStyles,

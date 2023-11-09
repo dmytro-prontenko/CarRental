@@ -13,23 +13,18 @@ import {
 
 const GalleryItems = () => {
   const carsList = useSelector((state) => state.cars.cars);
-  // const triggerToModal = useSelector((state) => state.cars.modalId);
-  // const [isOpen, setIsOpen] = useState(false);
+
 
   const dispatch = useDispatch();
 
   const handleSetModalId = (id) => {
-    // if (!isOpen) {
       dispatch(setModalId(id));
-    // }
-    // setIsOpen(!isOpen);
   };
 
   const carsItems = carsList.map((car) => {
     return (
-      <>
         <StyledCard key={car.id}>
-          <div>
+          <>
             <StyledImg
               src={car.img || notFoundImg}
               alt={`${car.make} ${car.model}`}
@@ -53,17 +48,12 @@ const GalleryItems = () => {
                 car.functionalities[0]
               }`}
             </StyledCarInfo>
-          </div>
+          </>
           <StyledLearnMoreBtn onClick={() => handleSetModalId(car.id)}>
             Learn more
           </StyledLearnMoreBtn>
         </StyledCard>
-        {/* {isOpen && (
-          <Modal onCloseModal={handleModalOpen}>
-            <ModalCard />
-          </Modal>
-        )} */}
-      </>
+
     );
   });
   return carsItems;

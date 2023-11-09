@@ -5,9 +5,6 @@ const $instance = axios.create({
   baseURL: BASE_URL,
 });
 
-// const page = 1;
-// const limit = 12;
-
 export const getCars = async (config) => {
   const { data } = await $instance.get('cars', {
     params: {

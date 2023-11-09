@@ -2,16 +2,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import GalleryItems from "../../components/GalleryItems/GalleryItems";
+import Modal from "../../components/Modal/Modal";
+import ModalCard from "../../components/ModalCard/ModalCard";
 import SearchForm from "../../components/SearchForm/SearchForm";
+import { setModalId } from "../../redux/carsReducer";
 import { getCarsThunk } from "../../redux/thunks";
 import {
   GalleryWrapper,
   LoadMoreBtn,
   StyledGalleryList,
 } from "./Catalog.styled";
-import Modal from "../../components/Modal/Modal";
-import ModalCard from "../../components/ModalCard/ModalCard";
-import { setModalId } from "../../redux/carsReducer";
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
@@ -19,7 +19,6 @@ const Catalog = () => {
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
   const dispatch = useDispatch();
-  // const [isOpen, setIsOpen] = useState(false);
 
   const handleModalOpen = () => {
     dispatch(setModalId(null));
