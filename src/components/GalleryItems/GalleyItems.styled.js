@@ -4,6 +4,7 @@ export const StyledCard = styled.li`
   width: 274px;
   height: 426px;
   display: flex;
+  /* gap: 28px; */
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -51,56 +52,6 @@ export const StyledCarInfo = styled.div`
   font-weight: 400;
   line-height: 18px;
 `;
-
-// export const StyledInfoFirstLine = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(3, auto);
-
-//   grid-gap: 10px;
-
-//   p {
-//     border-right: 1px solid rgba(18, 20, 23, 0.1);
-//     color: rgba(18, 20, 23, 0.5);
-//     padding: 0 10px; /* Добавим отступы для p элементов */
-
-//     font-family: Manrope;
-//     font-size: 12px;
-//     font-style: normal;
-//     font-weight: 400;
-//     line-height: 18px;
-
-//     &:last-child {
-//       border-right: none;
-//     }
-//   }
-// `;
-
-// export const StyledInfoSecondLine = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(3, auto);
-
-//   & :nth-child(n) {
-//     padding: 0 auto;
-//     border-right: 1px solid rgba(18, 20, 23, 0.1);
-//     color: rgba(18, 20, 23, 0.5);
-
-//     font-family: Manrope;
-//     font-size: 12px;
-//     font-style: normal;
-//     font-weight: 400;
-//     line-height: 18px; /* 150% */
-//   }
-
-// & :last-child {
-//   border-right: none;
-
-//   display: inline-block;
-//   width: 80px;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-// }
-// `;
 
 export const StyledLearenMoreBtn = styled.button`
   width: 100%;

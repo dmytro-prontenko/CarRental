@@ -5,6 +5,7 @@ export const StyledGalleryList = styled.ul`
   grid-template-columns: repeat(4, 1fr);
   place-items:center;
   gap: 29px;
+  row-gap:50px;
 
   list-style: none;
   width: 1184px;
