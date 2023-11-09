@@ -24,12 +24,19 @@ const Modal = ({onCloseModal, children}) => {
   return (
     <Wrapper onClick={onBackDropClick}>
       <Content>
-        <StyledButtonClose onClick={onCloseModal}>Close</StyledButtonClose>
+        <StyledButtonClose onClick={onCloseModal}>          <svg width="12" height="12">
+            <use href={`../../images/close.svg`} />
+          </svg></StyledButtonClose>
         {children}
       </Content>
     </Wrapper>
   );
 };
+
+// Modal.propTypes = {
+//   children: PropTypes.node,
+//   onCloseModal: PropTypes.func,
+// };
 
 export default Modal;
 

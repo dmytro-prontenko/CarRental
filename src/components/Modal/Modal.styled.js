@@ -34,17 +34,18 @@ export const Childrens = styled.div`
 
 export const StyledButtonClose = styled.button`
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 15px;
+  right: 15px;
   padding: 12px 20px;
-  background-color: teal;
-  color: white;
+  background-color: transparent;
+  /* color: white; */
   border: none;
   border-radius: 8px;
-  box-shadow: 2px 2px 3px 1px gray;
+  
   transition: all 0.1s ease-in;
   &:hover {
     cursor: pointer;
-    background-color: darkblue;
+    box-shadow: 2px 2px 3px 1px gray;
+    /* background-color: darkblue; */
   }
 `;

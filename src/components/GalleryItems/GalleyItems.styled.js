@@ -66,11 +66,17 @@ export const StyledLearnMoreBtn = styled.button`
   border: none;
   border-radius: 12px;
   background: #3470ff;
+  cursor: pointer;
 
   color: #fff;
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
+
+  transition: all 0.1s ease-in;
+  &:hover {
+    background: #0b44cd;
+  }
 `;
