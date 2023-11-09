@@ -6,6 +6,7 @@ import {
   StyledMileageFromInput,
   StyledMileageToInput,
 } from "./SearchFormStyles";
+import { toast } from "react-toastify";
 
 const price = [];
 for (let index = 1; index <= 15; index++) {
@@ -53,9 +54,12 @@ const SearchForm = () => {
     formState: { errors },
   } = useForm();
 
-
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = ({ make, price, mileageFrom, mileageTo }) => {
+    if (make || price || mileageFrom || mileageTo) {
+      console.log(make.value, price.value)
+    } else {
+      toast.info("You must choose at least one filed for filtering")
+    }
   };
 
   return (
@@ -79,15 +83,11 @@ const SearchForm = () => {
         </label>
         {/* <label> */}
         <Controller
-          name="category"
+          name="price"
           control={control}
           render={({ field }) => (
             <Select
-              {...register("category", {
-                required: {
-                  value: true,
-                  message: "This field is required",
-                },
+              {...register("price", {
               })}
               placeholder="Price"
               {...field}
@@ -119,13 +119,10 @@ const SearchForm = () => {
               {...register("mileageFrom")}
               placeholder="From"
             />
-            {errors.mileageFrom && <p>{errors.mileageFrom.message}</p>}
             <StyledMileageToInput
               type="number"
               placeholder="To"
-              {...register("mileageTo", {
-                required: { value: false, message: "This field is required" },
-              })}
+              {...register("mileageTo")}
             />
           </StyledInputWrapper>
           {errors.mileageTo && <p>{errors.mileageTo.message}</p>}

@@ -25,7 +25,7 @@ export const carSlicer = createSlice({
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
         state.cars.push(...payload);
         state.page++;
-        state.reachOut = false;
+        payload.length < 12 ? state.reachOut = true : state.reachOut = false;
       })
       .addCase(getCarsThunk.rejected, (state) => {
         state.reachOut = true;
