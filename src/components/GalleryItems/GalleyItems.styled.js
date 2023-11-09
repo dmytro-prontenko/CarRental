@@ -5,6 +5,7 @@ export const StyledCard = styled.li`
   height: 426px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 StyledCard;
 
@@ -42,65 +43,64 @@ export const StyledCarModel = styled.span`
   color: #3470ff;
 `;
 export const StyledCarInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 40px;
-  margin-bottom: 28px;
-
-  gap: 4px;
-
   color: rgba(18, 20, 23, 0.5);
 
   font-family: Manrope;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px; /* 150% */
+  line-height: 18px;
 `;
 
-export const StyledInfoFirstLine = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, auto);
+// export const StyledInfoFirstLine = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(3, auto);
 
-  grid-gap: 10px;
+//   grid-gap: 10px;
 
-  & :nth-child(n) {
-    border-right: 1px solid rgba(18, 20, 23, 0.1);
-    color: rgba(18, 20, 23, 0.5);
+//   p {
+//     border-right: 1px solid rgba(18, 20, 23, 0.1);
+//     color: rgba(18, 20, 23, 0.5);
+//     padding: 0 10px; /* Добавим отступы для p элементов */
 
-    font-family: Manrope;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 18px;
-  }
+//     font-family: Manrope;
+//     font-size: 12px;
+//     font-style: normal;
+//     font-weight: 400;
+//     line-height: 18px;
 
-  & :last-child {
-    border-right: none;
-  }
-`;
-export const StyledInfoSecondLine = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, auto);
+//     &:last-child {
+//       border-right: none;
+//     }
+//   }
+// `;
 
-  & :nth-child(n) {
-    padding: 3px;
-    border-right: 1px solid rgba(18, 20, 23, 0.1);
-    color: rgba(18, 20, 23, 0.5);
+// export const StyledInfoSecondLine = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(3, auto);
 
-    font-family: Manrope;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 18px; /* 150% */
-  }
+//   & :nth-child(n) {
+//     padding: 0 auto;
+//     border-right: 1px solid rgba(18, 20, 23, 0.1);
+//     color: rgba(18, 20, 23, 0.5);
 
-  & :last-child {
-    border-right: none;
-  }
-`;
+//     font-family: Manrope;
+//     font-size: 12px;
+//     font-style: normal;
+//     font-weight: 400;
+//     line-height: 18px; /* 150% */
+//   }
+
+// & :last-child {
+//   border-right: none;
+
+//   display: inline-block;
+//   width: 80px;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+// `;
 
 export const StyledLearenMoreBtn = styled.button`
   width: 100%;
