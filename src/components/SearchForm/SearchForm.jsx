@@ -1,14 +1,18 @@
 import { Controller, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import Select from "react-select";
-import { StyledForm, StyledInputWrapper, StyledMileageFromInput, StyledMileageToInput } from "./SearchFormStyles";
+import {
+  StyledForm,
+  StyledInputWrapper,
+  StyledMileageFromInput,
+  StyledMileageToInput,
+} from "./SearchFormStyles";
 
 const price = [];
 for (let index = 1; index <= 15; index++) {
   price.push({ value: `${index * 10}`, label: `${index * 10}` });
 }
 
-const make = [
+const makes = [
   { value: "Buick", label: "Buick" },
   { value: "Volvo", label: "Volvo" },
   { value: "HUMMER", label: "HUMMER" },
@@ -31,6 +35,16 @@ const make = [
   { value: "Land", label: "Land" },
 ];
 
+makes.sort((a, b) => {
+  if (a.value < b.value) {
+    return -1;
+  }
+  if (a.value > b.value) {
+    return 1;
+  }
+  return 0;
+});
+
 const SearchForm = () => {
   const {
     register,
@@ -38,7 +52,7 @@ const SearchForm = () => {
     control,
     formState: { errors },
   } = useForm();
-  // const dispatch = useDispatch();
+
 
   const onSubmit = (data) => {
     console.log(data);
@@ -55,7 +69,7 @@ const SearchForm = () => {
             render={({ field }) => (
               <Select
                 {...field}
-                options={make}
+                options={makes}
                 isClearable={true}
                 isSearchable={true}
                 placeholder="Brand"
@@ -65,24 +79,24 @@ const SearchForm = () => {
         </label>
         {/* <label> */}
         <Controller
-              name="category"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...register('category', {
-                    required: {
-                      value: true,
-                      message: 'This field is required',
-                    },
-                  })}
-                  placeholder="Price"
-                  {...field}
-                  options={price}
-                />
-              )}
+          name="category"
+          control={control}
+          render={({ field }) => (
+            <Select
+              {...register("category", {
+                required: {
+                  value: true,
+                  message: "This field is required",
+                },
+              })}
+              placeholder="Price"
+              {...field}
+              options={price}
             />
-          {/* <span>Price / 1 hour</span> */}
-          {/* <Controller
+          )}
+        />
+        {/* <span>Price / 1 hour</span> */}
+        {/* <Controller
             name="price"
             control={control}
             render={({ field }) => (
@@ -97,25 +111,25 @@ const SearchForm = () => {
           />
           {errors.price && <p>{errors.price.message}</p>} */}
         {/* </label> */}
-          <label>
-            {/* <span>Сar mileage / km</span> */}
-            <StyledInputWrapper>
-              <StyledMileageFromInput
-                type="number"
-                {...register("mileageFrom")}
-                placeholder="From"
-              />
-              {errors.mileageFrom && <p>{errors.mileageFrom.message}</p>}
-              <StyledMileageToInput
-                type="number"
-                placeholder="To"
-                {...register("mileageTo", {
-                  required: { value: false, message: "This field is required" },
-                })}
-              />
-            </StyledInputWrapper>
-            {errors.mileageTo && <p>{errors.mileageTo.message}</p>}
-          </label>
+        <label>
+          {/* <span>Сar mileage / km</span> */}
+          <StyledInputWrapper>
+            <StyledMileageFromInput
+              type="number"
+              {...register("mileageFrom")}
+              placeholder="From"
+            />
+            {errors.mileageFrom && <p>{errors.mileageFrom.message}</p>}
+            <StyledMileageToInput
+              type="number"
+              placeholder="To"
+              {...register("mileageTo", {
+                required: { value: false, message: "This field is required" },
+              })}
+            />
+          </StyledInputWrapper>
+          {errors.mileageTo && <p>{errors.mileageTo.message}</p>}
+        </label>
 
         <button>search</button>
       </StyledForm>

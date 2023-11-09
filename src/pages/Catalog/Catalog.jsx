@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import GalleryItem from "../../components/GalleryItem/GalleryItem";
+import { toast } from "react-toastify";
+import GalleryItems from "../../components/GalleryItem/GalleryItem";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import { getCarsThunk } from "../../redux/thunks";
-import { toast } from "react-toastify";
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
@@ -15,16 +15,22 @@ const Catalog = () => {
     dispatch(getCarsThunk({ page, limit }))
       .unwrap()
       .then(() => {
-        toast.success("Got more cars");
+        toast.success("Received more records");
       })
       .catch((error) => {
-        toast.error(error.message);
+        toast.info(error.message);
       });
   };
 
   useEffect(() => {
     if (page === 1) {
-      dispatch(getCarsThunk({ page, limit }));
+      dispatch(getCarsThunk({ page, limit })).unwrap()
+      .then(() => {
+        toast.success("Received first 12 records");
+      })
+      .catch((error) => {
+        toast.info(error.message);
+      });
     }
   }, [dispatch, page, limit]);
 
@@ -32,7 +38,7 @@ const Catalog = () => {
     <>
       <SearchForm />
       <ul>
-        <GalleryItem />
+        <GalleryItems />
       </ul>
       {!reachOut ? <button onClick={handleLoadMore}>Load more</button> : null}
     </>

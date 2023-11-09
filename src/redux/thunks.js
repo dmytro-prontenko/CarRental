@@ -9,7 +9,7 @@ export const getCarsThunk = createAsyncThunk(
       if (response.length) {
         return response ;
       } else {
-        throw new Error ('The are no more data')
+        throw new Error ('You have reached the end. There are no more data.')
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
