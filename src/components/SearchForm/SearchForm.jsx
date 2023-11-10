@@ -6,11 +6,13 @@ import { setEmptyCarsList, setReachOut } from "../../redux/carsReducer";
 import { getCarsByFilterThunk } from "../../redux/thunks";
 import {
   StyledForm,
+  StyledFromError,
   StyledInputWrapper,
   StyledMileageFromInput,
   StyledMileageToInput,
   StyledSearchButton,
   StyledSpan,
+  StyledToError
 } from "./SearchForm.styled";
 import { makeStyles, priceStyles } from "./Select.styles";
 
@@ -71,7 +73,6 @@ const SearchForm = () => {
   const dispatch = useDispatch();
   const filteredList = useSelector((state) => state.cars.filteredCars);
 
-
   const onSubmit = (data, e) => {
     e.preventDefault();
     const dataToDispatch = { ...data };
@@ -96,8 +97,8 @@ const SearchForm = () => {
   };
 
   const handleClearResults = () => {
-    dispatch(setEmptyCarsList())
-    dispatch(setReachOut(false))
+    dispatch(setEmptyCarsList());
+    dispatch(setReachOut(false));
     // dispatch(getCarsThunk({ page: 1, limit }));
   };
 
@@ -145,16 +146,21 @@ const SearchForm = () => {
           <StyledInputWrapper>
             <StyledMileageFromInput
               type="number"
-              {...register("mileageFrom")}
+              {...register("mileageFrom", {
+                min: { value: 0, message: "Min value 0" },
+              })}
               placeholder="From"
             />
+            {errors.mileageFrom && <StyledFromError>{errors.mileageFrom.message}</StyledFromError>}
             <StyledMileageToInput
               type="number"
               placeholder="To"
-              {...register("mileageTo")}
+              {...register("mileageTo", {
+                min: { value: 0, message: "Min value 0" },
+              })}
             />
+          {errors.mileageTo && <StyledToError>{errors.mileageTo.message}</StyledToError>}
           </StyledInputWrapper>
-          {errors.mileageTo && <p>{errors.mileageTo.message}</p>}
         </label>
         <StyledSearchButton>Search</StyledSearchButton>
         {filteredList.length ? (

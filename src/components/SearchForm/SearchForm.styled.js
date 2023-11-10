@@ -20,6 +20,7 @@ export const StyledSpan = styled.span`
 
 export const StyledInputWrapper = styled.div`
   display: flex;
+  position: relative;
 `;
 
 export const StyledMileageFromInput = styled.input`
@@ -46,6 +47,7 @@ export const StyledMileageFromInput = styled.input`
   line-height: 20px;
 `;
 export const StyledMileageToInput = styled.input`
+
   display: flex;
   width: 160px;
   height: 48px;
@@ -92,4 +94,21 @@ export const StyledSearchButton = styled.button`
   &:hover {
     background: #0b44cd;
   }
+`;
+
+export const StyledFromError = styled.p`
+  font-size: 0.5rem;
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  margin: 0;
+  color: red
+`;
+export const StyledToError = styled.p`
+  font-size: 0.5rem;
+  position: absolute;
+  top: 50px;
+  left: 171px;
+  margin: 0;
+  color: red
 `;
