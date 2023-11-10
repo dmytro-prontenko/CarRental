@@ -24,6 +24,7 @@ export const carSlicer = createSlice({
       state.filteredCars = [];
       state.page = 1;
     },
+    setReachOut:(state,{payload})=>{state.reachOut=payload}
   },
   extraReducers: (builder) => {
     builder
@@ -31,19 +32,32 @@ export const carSlicer = createSlice({
         state.cars.push(...payload);
         state.filteredCars = [];
         state.page++;
+        state.isLoading =false,
         payload.length < 12
           ? (state.reachOut = true)
           : (state.reachOut = false);
       })
       .addCase(getCarsThunk.rejected, (state) => {
         state.reachOut = true;
+        state.isLoading =false
       })
+      .addCase(getCarsThunk.pending, (state) => {
+        state.isLoading =true
+      })
+
       .addCase(getCarsByFilterThunk.fulfilled, (state, { payload }) => {
         state.filteredCars = [];
         state.filteredCars.push(...payload);
-      });
+        state.isLoading =false
+      })
+      .addCase(getCarsByFilterThunk.pending, (state) => {
+        state.isLoading =true
+      })
+      .addCase(getCarsByFilterThunk.rejected, (state) => {
+        state.isLoading =false
+      })
   },
 });
 
 export const carsReducer = carSlicer.reducer;
-export const { setModalId, setEmptyCarsList } = carSlicer.actions;
+export const { setModalId, setEmptyCarsList, setReachOut } = carSlicer.actions;

@@ -12,11 +12,12 @@ import {
   LoadMoreBtn,
   StyledGalleryList,
 } from "./Catalog.styled";
+import Loader from "../../components/Loader/Loader";
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
-  console.log(`catalog page - ${page}`)
   const limit = useSelector((state) => state.cars.limit);
+  const isLoading = useSelector((state) => state.cars.isLoading);
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
   const dispatch = useDispatch();
@@ -31,8 +32,9 @@ const Catalog = () => {
     }
   }, [dispatch, page, limit]);
 
-  const handleModalOpen = () => {
+  const handleModalClose = () => {
     dispatch(setModalId(null));
+    document.body.classList.remove("modal-open");
   };
 
   const handleLoadMore = () => {
@@ -50,16 +52,20 @@ const Catalog = () => {
   return (
     <>
       <SearchForm />
-      <GalleryWrapper>
-        <StyledGalleryList>
-          <GalleryItems />
-        </StyledGalleryList>
-        {!reachOut ? (
-          <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
-        ) : null}
-      </GalleryWrapper>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <GalleryWrapper>
+          <StyledGalleryList>
+            <GalleryItems />
+          </StyledGalleryList>
+          {!reachOut ? (
+            <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
+          ) : null}
+        </GalleryWrapper>
+      )}
       {triggerForModal && (
-        <Modal onCloseModal={handleModalOpen}>
+        <Modal onCloseModal={handleModalClose}>
           <ModalCard />
         </Modal>
       )}

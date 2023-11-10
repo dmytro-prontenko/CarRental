@@ -1,37 +1,41 @@
+import PropTypes from "prop-types";
+import sprite from "../../images/sprite.svg";
 import { Content, StyledButtonClose, Wrapper } from "./Modal.styled";
-import PropTypes from 'prop-types';
-import sprite from '../../images/sprite.svg';
 
 const Modal = ({ onCloseModal, children }) => {
+
+
   const onBackDropClick = (e) => {
     if (e.currentTarget === e.target) {
-      onCloseModal();
       cleanup();
+      onCloseModal();
     }
   };
 
   const onEscKeyPress = (e) => {
     if (e.key === "Escape") {
-      onCloseModal();
       cleanup();
+      onCloseModal();
     }
   };
 
-  document.body.classList.add('modal-open');
   document.addEventListener("keydown", onEscKeyPress);
+  document.body.classList.add("modal-open");
+
+
 
   const cleanup = () => {
+    document.body.classList.remove("modal-open");
     document.removeEventListener("keydown", onEscKeyPress);
-    document.body.classList.remove('modal-open');
   };
 
   return (
     <Wrapper onClick={onBackDropClick}>
       <Content>
         <StyledButtonClose onClick={onCloseModal}>
-        <svg width="18" height="18">
-          <use href={`${sprite}#icon-close`} />
-        </svg>
+          <svg width="18" height="18">
+            <use href={`${sprite}#icon-close`} />
+          </svg>
         </StyledButtonClose>
         {children}
       </Content>

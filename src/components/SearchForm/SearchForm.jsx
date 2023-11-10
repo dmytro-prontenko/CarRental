@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { setEmptyCarsList } from "../../redux/carsReducer";
+import { setEmptyCarsList, setReachOut } from "../../redux/carsReducer";
 import { getCarsByFilterThunk } from "../../redux/thunks";
 import {
   StyledForm,
@@ -86,15 +86,18 @@ const SearchForm = () => {
         .unwrap()
         .then(() => {
           toast.success(`We found ${filteredList.length} cars`);
+          console.log(filteredList);
         });
+      dispatch(setReachOut(true));
       reset(defaultValues);
     } else {
-      toast.info("You must choose at least one filed for filtering");
+      toast.info("You must choose at least one field for filtering");
     }
   };
 
   const handleClearResults = () => {
     dispatch(setEmptyCarsList())
+    dispatch(setReachOut(false))
     // dispatch(getCarsThunk({ page: 1, limit }));
   };
 
