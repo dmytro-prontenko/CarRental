@@ -20,7 +20,9 @@ export const carSlicer = createSlice({
       state.modalId = payload;
     },
     setEmptyCarsList: (state) => {
-      (state.cars = []), (state.filteredCars = []);
+      state.cars = [];
+      state.filteredCars = [];
+      state.page = 1;
     },
   },
   extraReducers: (builder) => {
@@ -44,4 +46,4 @@ export const carSlicer = createSlice({
 });
 
 export const carsReducer = carSlicer.reducer;
-export const { setModalId,setEmptyCarsList } = carSlicer.actions;
+export const { setModalId, setEmptyCarsList } = carSlicer.actions;

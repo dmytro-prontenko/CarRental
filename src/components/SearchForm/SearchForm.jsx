@@ -2,7 +2,8 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { getCarsByFilterThunk, getCarsThunk } from "../../redux/thunks";
+import { setEmptyCarsList } from "../../redux/carsReducer";
+import { getCarsByFilterThunk } from "../../redux/thunks";
 import {
   StyledForm,
   StyledInputWrapper,
@@ -12,7 +13,6 @@ import {
   StyledSpan,
 } from "./SearchForm.styled";
 import { makeStyles, priceStyles } from "./Select.styles";
-import { setEmptyCarsList } from "../../redux/carsReducer";
 
 const price = [];
 
@@ -70,7 +70,7 @@ const SearchForm = () => {
   } = useForm();
   const dispatch = useDispatch();
   const filteredList = useSelector((state) => state.cars.filteredCars);
-  const limit = useSelector((state) => state.cars.limit);
+  // const limit = useSelector((state) => state.cars.limit);
 
   const onSubmit = (data, e) => {
     e.preventDefault();
@@ -95,7 +95,7 @@ const SearchForm = () => {
 
   const handleClearResults = () => {
     dispatch(setEmptyCarsList())
-    dispatch(getCarsThunk({ page: 1, limit }));
+    // dispatch(getCarsThunk({ page: 1, limit }));
   };
 
   return (

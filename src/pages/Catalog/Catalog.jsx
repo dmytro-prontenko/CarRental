@@ -15,19 +15,16 @@ import {
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
+  console.log(`catalog page - ${page}`)
   const limit = useSelector((state) => state.cars.limit);
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
-  // const filteredList = useSelector((state) => state.cars.filteredCars);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (page === 1) {
       dispatch(getCarsThunk({ page, limit }))
         .unwrap()
-        .then(() => {
-          toast.success("Received first 12 records");
-        })
         .catch((error) => {
           toast.info(error.message);
         });
