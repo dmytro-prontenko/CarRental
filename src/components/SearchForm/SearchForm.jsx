@@ -70,7 +70,7 @@ const SearchForm = () => {
   } = useForm();
   const dispatch = useDispatch();
   const filteredList = useSelector((state) => state.cars.filteredCars);
-  // const limit = useSelector((state) => state.cars.limit);
+
 
   const onSubmit = (data, e) => {
     e.preventDefault();
