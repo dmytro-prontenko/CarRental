@@ -18,7 +18,7 @@ const Catalog = () => {
   const limit = useSelector((state) => state.cars.limit);
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
-  const filteredList = useSelector((state) => state.cars.filteredCars);
+  // const filteredList = useSelector((state) => state.cars.filteredCars);
   const dispatch = useDispatch();
 
   useEffect(() => {
