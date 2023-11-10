@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { getCarsByFilterThunk } from "../../redux/thunks";
+import { getCarsByFilterThunk, getCarsThunk } from "../../redux/thunks";
 import {
   StyledForm,
   StyledInputWrapper,
@@ -12,8 +12,10 @@ import {
   StyledSpan,
 } from "./SearchForm.styled";
 import { makeStyles, priceStyles } from "./Select.styles";
+import { setEmptyCarsList } from "../../redux/carsReducer";
 
 const price = [];
+
 const defaultValues = {
   make: null,
   price: null,
@@ -66,30 +68,35 @@ const SearchForm = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch()
-  const filteredList = useSelector(state=>state.cars.filteredCars)
+  const dispatch = useDispatch();
+  const filteredList = useSelector((state) => state.cars.filteredCars);
+  const limit = useSelector((state) => state.cars.limit);
 
-  const onSubmit = (data) => {
-    const dataToDispatch = {...data}
-    dataToDispatch.make = data.make?.value || null
-    dataToDispatch.price = +data.price?.value || null
-    dataToDispatch.mileageFrom = +data.mileageFrom
-    dataToDispatch.mileageTo = +data.mileageTo
-    const {make, price, mileageFrom, mileageTo } = dataToDispatch;
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    const dataToDispatch = { ...data };
+    dataToDispatch.make = data.make?.value || null;
+    dataToDispatch.price = +data.price?.value || null;
+    dataToDispatch.mileageFrom = +data.mileageFrom;
+    dataToDispatch.mileageTo = +data.mileageTo;
+    const { make, price, mileageFrom, mileageTo } = dataToDispatch;
 
     if (make || price || mileageFrom || mileageTo) {
-      dispatch(getCarsByFilterThunk({make, price, mileageFrom, mileageTo}))
-      .unwrap()
-      .then(() => {
-        toast.success(`We found ${filteredList.length} cars`);
-      })
-      //TODO clean select fields
-      reset(defaultValues)
+      dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }))
+        .unwrap()
+        .then(() => {
+          toast.success(`We found ${filteredList.length} cars`);
+        });
+      reset(defaultValues);
     } else {
       toast.info("You must choose at least one filed for filtering");
     }
   };
 
+  const handleClearResults = () => {
+    dispatch(setEmptyCarsList())
+    dispatch(getCarsThunk({ page: 1, limit }));
+  };
 
   return (
     <div>
@@ -101,7 +108,7 @@ const SearchForm = () => {
             control={control}
             render={({ field }) => (
               <Select
-              {...register("price")}
+                {...register("price")}
                 styles={makeStyles}
                 {...field}
                 options={makes}
@@ -146,7 +153,12 @@ const SearchForm = () => {
           </StyledInputWrapper>
           {errors.mileageTo && <p>{errors.mileageTo.message}</p>}
         </label>
-          <StyledSearchButton>Search</StyledSearchButton>
+        <StyledSearchButton>Search</StyledSearchButton>
+        {filteredList.length ? (
+          <StyledSearchButton type="button" onClick={handleClearResults}>
+            Clear results
+          </StyledSearchButton>
+        ) : null}
       </StyledForm>
     </div>
   );

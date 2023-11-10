@@ -10,19 +10,27 @@ import {
   StyledImg,
   StyledLearnMoreBtn,
 } from "./GalleyItems.styled";
-// import { useEffect, useRef } from "react";
 
-const GalleryItems = () => {
+// import { useEffect, useRef } from "react";
+export const GalleryItems = () => {
   const carsList = useSelector((state) => state.cars.cars);
-  const filteredList = useSelector((state) => state.cars.filteredCars);
-  const carsToRender = filteredList.length ? filteredList : carsList;
+  // const filteredList = useSelector((state) => state.cars.filteredCars);
+  // const carsToRender = filteredList || carsList;
   const dispatch = useDispatch();
 
+  // const carsToRenderRef = useRef([]);
+  // useEffect(() => {
+  //   if (filteredList.length) {
+  //     carsToRenderRef.current = [...filteredList];
+  //   } else {
+  //     carsToRenderRef.current = [...carsList];
+  //   }
+  // }, [filteredList, carsList]);
   const handleSetModalId = (id) => {
     dispatch(setModalId(id));
   };
 
-  const carsItems = carsToRender.map((car) => {
+  const carsItems = carsList.map((car) => {
     return (
       <StyledCard key={car.id}>
         <>
@@ -58,5 +66,3 @@ const GalleryItems = () => {
   });
   return carsItems;
 };
-
-export default GalleryItems;

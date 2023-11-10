@@ -18,7 +18,21 @@ const Catalog = () => {
   const limit = useSelector((state) => state.cars.limit);
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
+  const filteredList = useSelector((state) => state.cars.filteredCars);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (page === 1) {
+      dispatch(getCarsThunk({ page, limit }))
+        .unwrap()
+        .then(() => {
+          toast.success("Received first 12 records");
+        })
+        .catch((error) => {
+          toast.info(error.message);
+        });
+    }
+  }, [dispatch, page, limit]);
 
   const handleModalOpen = () => {
     dispatch(setModalId(null));
@@ -35,19 +49,6 @@ const Catalog = () => {
         toast.info(error.message);
       });
   };
-
-  useEffect(() => {
-    if (page === 1) {
-      dispatch(getCarsThunk({ page, limit }))
-        .unwrap()
-        .then(() => {
-          toast.success("Received first 12 records");
-        })
-        .catch((error) => {
-          toast.info(error.message);
-        });
-    }
-  }, [dispatch, page, limit]);
 
   return (
     <>

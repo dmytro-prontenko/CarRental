@@ -6,38 +6,42 @@ const initialState = {
   favoriteCars: [],
   filteredCars: [],
   isLoading: false,
-  isFiltered: false,
   page: 1,
   limit: 12,
   reachOut: false,
-  modalId:null
+  modalId: null,
 };
 
 export const carSlicer = createSlice({
   name: "cars",
   initialState,
   reducers: {
-    setModalId: (state, {payload}) => {
-      state.modalId = payload
-    }
+    setModalId: (state, { payload }) => {
+      state.modalId = payload;
+    },
+    setEmptyCarsList: (state) => {
+      (state.cars = []), (state.filteredCars = []);
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getCarsThunk.fulfilled, (state, { payload }) => {
         state.cars.push(...payload);
+        state.filteredCars = [];
         state.page++;
-        payload.length < 12 ? state.reachOut = true : state.reachOut = false;
+        payload.length < 12
+          ? (state.reachOut = true)
+          : (state.reachOut = false);
       })
       .addCase(getCarsThunk.rejected, (state) => {
         state.reachOut = true;
       })
       .addCase(getCarsByFilterThunk.fulfilled, (state, { payload }) => {
-        state.filteredCars=[];
+        state.filteredCars = [];
         state.filteredCars.push(...payload);
-      })
-      ;
+      });
   },
 });
 
 export const carsReducer = carSlicer.reducer;
-export const { setModalId } = carSlicer.actions;
+export const { setModalId,setEmptyCarsList } = carSlicer.actions;

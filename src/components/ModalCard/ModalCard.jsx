@@ -25,7 +25,9 @@ import {
 
 const ModalCard = () => {
   const searchId = useSelector((state) => state.cars.modalId);
-  const cars = useSelector((state) => state.cars.cars);
+  const carsList = useSelector((state) => state.cars.cars);
+  const filteredList = useSelector((state) => state.cars.filteredCars);
+  const cars = filteredList.length ? filteredList : carsList
   const {
     img,
     make,
