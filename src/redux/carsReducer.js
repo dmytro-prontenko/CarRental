@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCarsThunk } from "./thunks";
+import { getCarsByFilterThunk, getCarsThunk } from "./thunks";
 
 const initialState = {
   cars: [],
   favoriteCars: [],
-  filterValue: [],
+  filteredCars: [],
   isLoading: false,
   isFiltered: false,
   page: 1,
@@ -30,7 +30,12 @@ export const carSlicer = createSlice({
       })
       .addCase(getCarsThunk.rejected, (state) => {
         state.reachOut = true;
-      });
+      })
+      .addCase(getCarsByFilterThunk.fulfilled, (state, { payload }) => {
+        state.filteredCars=[];
+        state.filteredCars.push(...payload);
+      })
+      ;
   },
 });
 

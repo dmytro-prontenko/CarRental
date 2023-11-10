@@ -10,6 +10,8 @@ import {
   StyledSpan,
 } from "./SearchForm.styled";
 import { makeStyles, priceStyles } from "./Select.styles";
+import { useDispatch } from "react-redux";
+import { getCarsByFilterThunk } from "../../redux/thunks";
 
 const price = [];
 for (let index = 1; index <= 15; index++) {
@@ -54,12 +56,23 @@ const SearchForm = () => {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch()
 
-  const onSubmit = ({ make, price, mileageFrom, mileageTo }) => {
+  const onSubmit = (data) => {
+    const dataToDispatch = {...data}
+    dataToDispatch.make = data.make?.value || null
+    dataToDispatch.price = +data.price?.value || null
+    dataToDispatch.mileageFrom = +data.mileageFrom
+    dataToDispatch.mileageTo = +data.mileageTo
+    const {make, price, mileageFrom, mileageTo } = dataToDispatch;
+
     if (make || price || mileageFrom || mileageTo) {
-      console.log(make?.value, price.value);
+      dispatch(getCarsByFilterThunk({make, price, mileageFrom, mileageTo}))
+      //TODO clean select fields
+      reset()
     } else {
       toast.info("You must choose at least one filed for filtering");
     }
@@ -75,6 +88,7 @@ const SearchForm = () => {
             control={control}
             render={({ field }) => (
               <Select
+              {...register("price")}
                 styles={makeStyles}
                 {...field}
                 options={makes}
@@ -92,7 +106,7 @@ const SearchForm = () => {
             control={control}
             render={({ field }) => (
               <Select
-                {...register("price", {})}
+                // {...register("price")}
                 placeholder="To $"
                 styles={priceStyles}
                 {...field}

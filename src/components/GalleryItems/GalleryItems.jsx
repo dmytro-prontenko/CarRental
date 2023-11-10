@@ -13,6 +13,7 @@ import {
 
 const GalleryItems = () => {
   const carsList = useSelector((state) => state.cars.cars);
+  const filteredCars = useSelector((state) => state.cars.filteredCars);
 
 
   const dispatch = useDispatch();
