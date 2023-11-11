@@ -21,10 +21,11 @@ const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
   const limit = useSelector((state) => state.cars.limit);
   const isLoading = useSelector((state) => state.cars.isLoading);
+  const isLoadingSearch = useSelector((state) => state.cars.isLoadingSearchForm);
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
-  const isTabletAndDesktop = useMediaQuery({ query: '(min-width: 768px)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const isTabletAndDesktop = useMediaQuery({ query: "(min-width: 768px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,18 +59,22 @@ const Catalog = () => {
     <ContainerStyles>
       {isMobile && <SearchFormMobile />}
       {isTabletAndDesktop && <SearchForm />}
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <GalleryWrapper>
-          <StyledGalleryList>
-            <GalleryItems />
-          </StyledGalleryList>
-          {!reachOut ? (
-            <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
-          ) : null}
-        </GalleryWrapper>
-      )}
+      <GalleryWrapper>
+        {isLoadingSearch ? (
+          <Loader />
+        ) : (
+          <>
+            <StyledGalleryList>
+              <GalleryItems />
+            </StyledGalleryList>
+            {!reachOut && isLoading ? (
+              <Loader />
+            ) : !reachOut ? (
+              <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
+            ) : null}
+          </>
+        )}
+      </GalleryWrapper>
       {triggerForModal && (
         <Modal onCloseModal={handleModalClose}>
           <ModalCard />

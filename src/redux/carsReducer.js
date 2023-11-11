@@ -6,6 +6,7 @@ const initialState = {
   favoriteCars: [],
   filteredCars: [],
   isLoading: false,
+  isLoadingSearchForm: false,
   page: 1,
   limit: 12,
   reachOut: false,
@@ -25,7 +26,6 @@ export const carSlicer = createSlice({
     },
     setEmptyCarsList: (state) => {
       state.cars = [];
-      // state.filteredCars = [];
       state.page = 1;
     },
     setReachOut: (state, { payload }) => {
@@ -61,13 +61,15 @@ export const carSlicer = createSlice({
       .addCase(getCarsByFilterThunk.fulfilled, (state, { payload }) => {
         state.filteredCars = [];
         state.filteredCars.push(...payload);
-        state.isLoading = false;
+        state.isLoadingSearchForm = false;
       })
       .addCase(getCarsByFilterThunk.pending, (state) => {
-        state.isLoading = true;
+        // state.isLoading = true;
+        state.isLoadingSearchForm = true;
       })
       .addCase(getCarsByFilterThunk.rejected, (state) => {
-        state.isLoading = false;
+        // state.isLoading = false;
+        state.isLoadingSearchForm = false;
       });
   },
 });

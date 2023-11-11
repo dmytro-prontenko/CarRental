@@ -87,7 +87,6 @@ const SearchForm = () => {
         .unwrap()
         .then(() => {
           toast.success(`We found ${filteredList.length} cars`);
-          console.log(filteredList);
         });
       dispatch(setReachOut(true));
       reset(defaultValues);
@@ -99,7 +98,6 @@ const SearchForm = () => {
   const handleClearResults = () => {
     dispatch(setEmptyCarsList());
     dispatch(setReachOut(false));
-    // dispatch(getCarsThunk({ page: 1, limit }));
   };
 
   return (
