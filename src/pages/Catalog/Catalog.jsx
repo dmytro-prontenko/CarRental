@@ -27,7 +27,7 @@ const Catalog = () => {
   );
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
-  const favoritesList = useSelector((state) => state.cars.favoriteCars);
+  // const favoritesList = useSelector((state) => state.cars.favoriteCars);
   const isTabletAndDesktop = useMediaQuery({ query: "(min-width: 768px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const dispatch = useDispatch();
