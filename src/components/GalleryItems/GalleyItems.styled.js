@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCard = styled.li`
+  position: relative;
   width: 274px;
   height: 426px;
   display: flex;
@@ -60,7 +61,6 @@ export const StyledLearnMoreBtn = styled.button`
   align-items: center;
   flex-shrink: 0;
 
-
   border: none;
   border-radius: 12px;
   background: #3470ff;
@@ -76,5 +76,25 @@ export const StyledLearnMoreBtn = styled.button`
   transition: all 0.1s ease-in;
   &:hover {
     background: #0b44cd;
+  }
+`;
+
+export const StyledAddToFavBtn = styled.button`
+  position: absolute;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  top: 8px;
+  right: 8px;
+  fill:none;
+  stroke: white;
+
+  border: none;
+  background: transparent;
+  transition: all 0.1s ease-in;
+  &:hover {
+    cursor: pointer;
+    fill: #3470FF;
+    stroke: #3470FF;
   }
 `;

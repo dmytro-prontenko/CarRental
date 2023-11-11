@@ -1,6 +1,6 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import notFoundImg from "../../images/noFoundCar.png";
+import notFoundImg from "../../assets/images/noFoundCar.png";
 import {
   StyledAccessoriesList,
   StyledAccessoriesTitle,

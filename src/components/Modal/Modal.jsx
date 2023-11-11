@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import sprite from "../../images/sprite.svg";
+import sprite from "../../assets/images/sprite.svg";
 import { Content, StyledButtonClose, Wrapper } from "./Modal.styled";
 
 const Modal = ({ onCloseModal, children }) => {

@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import notFoundImg from "../../images/noFoundCar.png";
-import { setModalId } from "../../redux/carsReducer";
+import notFoundImg from "../../assets/images/noFoundCar.png";
 import {
+  addFavorites,
+  setFavorites,
+  setModalId,
+} from "../../redux/carsReducer";
+import {
+  StyledAddToFavBtn,
   StyledCarInfo,
   StyledCarModel,
   StyledCarSubtitle,
@@ -10,16 +15,23 @@ import {
   StyledImg,
   StyledLearnMoreBtn,
 } from "./GalleyItems.styled";
-// import { useEffect, useRef } from "react";
+import sprite from "../../assets/images/sprite.svg";
 
 const GalleryItems = () => {
   const carsList = useSelector((state) => state.cars.cars);
   const filteredList = useSelector((state) => state.cars.filteredCars);
+  const favoritesList = useSelector((state) => state.cars.favoriteCars);
   const carsToRender = filteredList.length ? filteredList : carsList;
   const dispatch = useDispatch();
 
   const handleSetModalId = (id) => {
     dispatch(setModalId(id));
+  };
+  const handleAddToFavorites = (item) => {
+    const existInFav = favoritesList?.some((car) => car.id === item.id);
+    existInFav
+      ? dispatch(setFavorites(favoritesList.filter((car) => car.id !== item.id)))
+      : dispatch(addFavorites(item));
   };
 
   const carsItems = carsToRender.map((car) => {
@@ -53,6 +65,15 @@ const GalleryItems = () => {
         <StyledLearnMoreBtn onClick={() => handleSetModalId(car.id)}>
           Learn more
         </StyledLearnMoreBtn>
+        <StyledAddToFavBtn
+          onClick={() => {
+            handleAddToFavorites(car);
+          }}
+        >
+          <svg width="18" height="18">
+            <use href={`${sprite}#icon-heart`} />
+          </svg>
+        </StyledAddToFavBtn>
       </StyledCard>
     );
   });
