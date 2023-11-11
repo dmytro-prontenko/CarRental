@@ -86,15 +86,15 @@ export const StyledAddToFavBtn = styled.button`
   height: 18px;
   top: 14px;
   right: 14px;
-  fill:none;
-  stroke: white;
-
+  fill: ${({ isFavorite }) => (isFavorite ? "#3470FF" : "none")};
+  stroke: ${({ isFavorite }) => (isFavorite ? "#3470FF" : "white")};
   border: none;
   background: transparent;
   transition: all 0.1s ease-in;
+  
   &:hover {
     cursor: pointer;
-    fill: #3470FF;
-    stroke: #3470FF;
+    fill: ${({ isFavorite }) => (isFavorite ? "#0b44cd" : "#3470FF")};
+    stroke: ${({ isFavorite }) => (isFavorite ? "#0b44cd" : "#3470FF")};
   }
 `;

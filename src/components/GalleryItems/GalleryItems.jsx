@@ -32,10 +32,10 @@ const GalleryItems = () => {
     const existInFav = favoritesList?.some((car) => car.id === item.id);
     if (existInFav) {
       dispatch(setFavorites(favoritesList.filter((car) => car.id !== item.id)));
-      toast.info(`Removed from favorites`)
+      toast.info(`Removed from favorites`);
     } else {
       dispatch(addFavorites(item));
-      toast.success(`Added to favorites`)
+      toast.success(`Added to favorites`);
     }
     // existInFav
     //   ? dispatch(setFavorites(favoritesList.filter((car) => car.id !== item.id)))
@@ -77,6 +77,7 @@ const GalleryItems = () => {
           onClick={() => {
             handleAddToFavorites(car);
           }}
+          isFavorite={favoritesList.some((favCar) => favCar.id === car.id)}
         >
           <svg width="18" height="18">
             <use href={`${sprite}#icon-heart`} />
