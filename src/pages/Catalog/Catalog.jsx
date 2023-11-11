@@ -1,22 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
+import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ContainerStyles } from "../../General.styled";
 import GalleryItems from "../../components/GalleryItems/GalleryItems";
+import Loader from "../../components/Loader/Loader";
 import Modal from "../../components/Modal/Modal";
 import ModalCard from "../../components/ModalCard/ModalCard";
 import SearchForm from "../../components/SearchForm/SearchForm";
-import { setLocation, setModalId, setReachOut } from "../../redux/carsReducer";
+import SearchFormMobile from "../../components/SearchFormMobile/SearchFormMobile";
+import { setLocation, setModalId } from "../../redux/carsReducer";
 import { getCarsThunk } from "../../redux/thunks";
 import {
   GalleryWrapper,
   LoadMoreBtn,
   StyledGalleryList,
 } from "./Catalog.styled";
-import Loader from "../../components/Loader/Loader";
-import { ContainerStyles } from "../../General.styled";
-import { useMediaQuery } from "react-responsive";
-import SearchFormMobile from "../../components/SearchFormMobile/SearchFormMobile";
-import { useLocation } from "react-router-dom";
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
