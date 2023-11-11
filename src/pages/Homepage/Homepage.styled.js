@@ -1,6 +1,10 @@
 import styled from "styled-components";
+// import background from '../../assets/images/background.webp';
+
 export const HomePageWrapper = styled.div`
   margin: 0 auto;
+  /* color:white; */
+  
 `;
 
 export const StyledMainHeader = styled.h1`

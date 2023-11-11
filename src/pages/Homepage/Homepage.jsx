@@ -1,10 +1,10 @@
-import { ContainerStyles } from "../../General.styled";
+import { ContainerStylesWithBackground } from "../../General.styled";
 import { StyledSpan } from "../../components/ModalCard/ModalCard.styled";
 import { HomePageWrapper, StyledBlock, StyledBlockWrapper, StyledHeaderSpan, StyledMainHeader } from "./Homepage.styled";
 
 const Homepage = () => {
   return (
-    <ContainerStyles>
+    <ContainerStylesWithBackground>
       <HomePageWrapper>
         <StyledMainHeader>
           <span>
@@ -68,7 +68,7 @@ const Homepage = () => {
           </StyledBlock>
         </StyledBlockWrapper>
       </HomePageWrapper>
-    </ContainerStyles>
+    </ContainerStylesWithBackground>
   );
 };
 
