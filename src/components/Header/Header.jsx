@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ContainerStyles } from "../../General.styled";
 import logo from "../../assets/images/logo.png";
 import sprite from "../../assets/images/sprite.svg";
+import { toggleModalMenu } from "../../redux/carsReducer";
 import ModalMenu from "../ModalMenu/ModalMenu";
 import {
   StyledBurgerBtn,
@@ -10,16 +11,13 @@ import {
   StyledNavLink,
   StyledNavWrapper,
   StyledNavigationLinks,
-  StyledNavigationLinksModal,
 } from "./Header.styled";
-import { toggleModalMenu } from "../../redux/carsReducer";
 
 const Header = () => {
   const modalMenuStatus = useSelector((state) => state.cars.modalMenuStatus);
   const dispatch = useDispatch();
   const handleMenuOpen = () => {
     dispatch(toggleModalMenu());
-    console.log(`status - ${modalMenuStatus}`)
   };
 
   return (
@@ -41,13 +39,7 @@ const Header = () => {
           </StyledBurgerBtn>
         </StyledNavWrapper>
       </StyledNavBar>
-      {modalMenuStatus ? <ModalMenu>
-        <StyledNavigationLinksModal>
-            <StyledNavLink to="/">Home</StyledNavLink>
-            <StyledNavLink to="/catalog">Catalog</StyledNavLink>
-            <StyledNavLink to="/favorites">Favorites</StyledNavLink>
-          </StyledNavigationLinksModal>
-      </ModalMenu> : null}
+      {modalMenuStatus ? <ModalMenu/> : null}
     </ContainerStyles>
   );
 };

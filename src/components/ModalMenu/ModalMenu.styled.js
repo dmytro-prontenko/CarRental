@@ -21,6 +21,8 @@ export const Content = styled.div`
   background: linear-gradient(to bottom, #3470ff, #0b44cd);
 
   padding: 40px 35px;
+
+  font-size:26px;
 `;
 export const Childrens = styled.div`
   display: flex;

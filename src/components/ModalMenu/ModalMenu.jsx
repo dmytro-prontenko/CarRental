@@ -1,12 +1,15 @@
-import { useDispatch } from "react-redux";
-import sprite from "../../assets/images/sprite.svg";
 import PropTypes from "prop-types";
-import { toggleModalMenu } from "../../redux/carsReducer";
+import sprite from "../../assets/images/sprite.svg";
 import { Content, StyledButtonClose, Wrapper } from "./ModalMenu.styled";
+import {
+  StyledNavLink,
+  StyledNavigationLinksModal,
+} from "../Header/Header.styled";
+import { useDispatch } from "react-redux";
+import { toggleModalMenu } from "../../redux/carsReducer";
 
-const ModalMenu = ({children}) => {
+const ModalMenu = () => {
   const dispatch = useDispatch();
-
   const onCloseModal = () => {
     document.body.classList.remove("modal-open");
     dispatch(toggleModalMenu());
@@ -35,7 +38,17 @@ const ModalMenu = ({children}) => {
   return (
     <Wrapper onClick={onBackDropClick}>
       <Content>
-        {children}
+        <StyledNavigationLinksModal>
+          <StyledNavLink to="/" onClick={onCloseModal}>
+            Home
+          </StyledNavLink>
+          <StyledNavLink to="/catalog" onClick={onCloseModal}>
+            Catalog
+          </StyledNavLink>
+          <StyledNavLink to="/favorites" onClick={onCloseModal}>
+            Favorites
+          </StyledNavLink>
+        </StyledNavigationLinksModal>
         <StyledButtonClose onClick={onCloseModal}>
           <svg width="18" height="18">
             <use href={`${sprite}#icon-cross-modal`} />
@@ -50,6 +63,5 @@ ModalMenu.propTypes = {
   children: PropTypes.node,
   onCloseModal: PropTypes.func,
 };
-
 
 export default ModalMenu;

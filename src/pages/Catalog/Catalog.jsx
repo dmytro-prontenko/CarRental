@@ -13,6 +13,9 @@ import {
   StyledGalleryList,
 } from "./Catalog.styled";
 import Loader from "../../components/Loader/Loader";
+import { ContainerStyles } from "../../General.styled";
+import { useMediaQuery } from "react-responsive";
+import SearchFormMobile from "../../components/SearchFormMobile/SearchFormMobile";
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
@@ -20,6 +23,8 @@ const Catalog = () => {
   const isLoading = useSelector((state) => state.cars.isLoading);
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
+  const isTabletAndDesktop = useMediaQuery({ query: '(min-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,8 +55,9 @@ const Catalog = () => {
   };
 
   return (
-    <>
-      <SearchForm />
+    <ContainerStyles>
+      {isMobile && <SearchFormMobile />}
+      {isTabletAndDesktop && <SearchForm />}
       {isLoading ? (
         <Loader />
       ) : (
@@ -69,7 +75,7 @@ const Catalog = () => {
           <ModalCard />
         </Modal>
       )}
-    </>
+    </ContainerStyles>
   );
 };
 
