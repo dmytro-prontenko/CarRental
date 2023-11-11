@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import notFoundImg from "../../assets/images/noFoundCar.png";
+import sprite from "../../assets/images/sprite.svg";
 import {
   addFavorites,
   setFavorites,
@@ -15,15 +17,26 @@ import {
   StyledImg,
   StyledLearnMoreBtn,
 } from "./GalleyItems.styled";
-import sprite from "../../assets/images/sprite.svg";
-import { toast } from "react-toastify";
 
 const GalleryItems = () => {
   const carsList = useSelector((state) => state.cars.cars);
-  const filteredList = useSelector((state) => state.cars.filteredCars);
   const favoritesList = useSelector((state) => state.cars.favoriteCars);
-  const carsToRender = filteredList.length ? filteredList : carsList;
+  const filteredList = useSelector((state) => state.cars.filteredCars);
+  const currentLocation = useSelector((state) => state.cars.location);
+  let carsToRender;
+  // const location = useLocation();
   const dispatch = useDispatch();
+
+  // location.pathname === '/catalog' ? carsToRender = carsList : carsToRender=favoritesList;
+  if (currentLocation === "/favorites" && filteredList.length) {
+    carsToRender = filteredList;
+  } else if (currentLocation === "/favorites") {
+    carsToRender = favoritesList;
+  } else if (currentLocation === "/catalog" && filteredList.length) {
+    carsToRender = filteredList;
+  } else {
+    carsToRender = carsList;
+  }
 
   const handleSetModalId = (id) => {
     dispatch(setModalId(id));

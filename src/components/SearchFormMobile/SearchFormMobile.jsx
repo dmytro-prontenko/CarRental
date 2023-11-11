@@ -1,33 +1,27 @@
-// import { Controller, useForm } from "react-hook-form";
-// import { useDispatch, useSelector } from "react-redux";
-// import Select from "react-select";
-// import { toast } from "react-toastify";
-// import { setEmptyCarsList, setReachOut } from "../../redux/carsReducer";
-// import { getCarsByFilterThunk } from "../../redux/thunks";
-// import {
-//   StyledForm,
-//   StyledFromError,
-//   StyledInputWrapper,
-//   StyledMileageFromInput,
-//   StyledMileageToInput,
-//   StyledSearchButton,
-//   StyledSpan,
-//   StyledToError
-// } from "./SearchForm.styled";
-// import { makeStyles, priceStyles } from "./Select.styles";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
+import { toast } from "react-toastify";
+import { setEmptyCarsList, setReachOut } from "../../redux/carsReducer";
+import { getCarsByFilterThunk } from "../../redux/thunks";
+import {
+  StyledToError
+} from "./SearchFormMobile.styled";
+import { StyledFormMobile, StyledFromErrorMobile, StyledInputWrapperMobile, StyledMileageFromInputMobile, StyledMileageToInputMobile, StyledSearchButtonMobile, StyledSpanMobile } from "./SearchFormMobile.styled";
+import { makeStyles, priceStyles } from "./SelectMobile.styles";
 
-// const price = [];
+const price = [];
 
-// const defaultValues = {
-//   make: null,
-//   price: null,
-//   mileageFrom: null,
-//   mileageTo: null,
-// };
+const defaultValues = {
+  make: null,
+  price: null,
+  mileageFrom: null,
+  mileageTo: null,
+};
 
-// for (let index = 1; index <= 15; index++) {
-//   price.push({ value: `${index * 10}`, label: `${index * 10}` });
-// }
+for (let index = 1; index <= 15; index++) {
+  price.push({ value: `${index * 10}`, label: `${index * 10}` });
+}
 
 const makes = [
   { value: "Buick", label: "Buick" },
@@ -62,115 +56,113 @@ makes.sort((a, b) => {
   return 0;
 });
 
-const SearchFormMobile = () => {
-  return (<p>Form Mobile</p>)
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   control,
-  //   reset,
-  //   formState: { errors },
-  // } = useForm();
-  // const dispatch = useDispatch();
-  // const filteredList = useSelector((state) => state.cars.filteredCars);
+const SearchForm = () => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const dispatch = useDispatch();
+  const filteredList = useSelector((state) => state.cars.filteredCars);
 
-  // const onSubmit = (data, e) => {
-  //   e.preventDefault();
-  //   const dataToDispatch = { ...data };
-  //   dataToDispatch.make = data.make?.value || null;
-  //   dataToDispatch.price = +data.price?.value || null;
-  //   dataToDispatch.mileageFrom = +data.mileageFrom;
-  //   dataToDispatch.mileageTo = +data.mileageTo;
-  //   const { make, price, mileageFrom, mileageTo } = dataToDispatch;
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    const dataToDispatch = { ...data };
+    dataToDispatch.make = data.make?.value || null;
+    dataToDispatch.price = +data.price?.value || null;
+    dataToDispatch.mileageFrom = +data.mileageFrom;
+    dataToDispatch.mileageTo = +data.mileageTo;
+    const { make, price, mileageFrom, mileageTo } = dataToDispatch;
 
-  //   if (make || price || mileageFrom || mileageTo) {
-  //     dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }))
-  //       .unwrap()
-  //       .then(() => {
-  //         toast.success(`We found ${filteredList.length} cars`);
-  //         console.log(filteredList);
-  //       });
-  //     dispatch(setReachOut(true));
-  //     reset(defaultValues);
-  //   } else {
-  //     toast.info("You must choose at least one field for filtering");
-  //   }
-  // };
+    if (make || price || mileageFrom || mileageTo) {
+      dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }))
+        .unwrap()
+        .then(() => {
+          toast.success(`We found ${filteredList.length} cars`);
+        });
+      dispatch(setReachOut(true));
+      reset(defaultValues);
+    } else {
+      toast.info("You must choose at least one field for filtering");
+    }
+  };
 
-  // const handleClearResults = () => {
-  //   dispatch(setEmptyCarsList());
-  //   dispatch(setReachOut(false));
-  // };
+  const handleClearResults = () => {
+    dispatch(setEmptyCarsList());
+    // dispatch(setReachOut(false));
+  };
 
-  // return (
-  //   <div>
-  //     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-  //       <label>
-  //         <StyledSpan>Car brand</StyledSpan>
-  //         <Controller
-  //           name="make"
-  //           control={control}
-  //           render={({ field }) => (
-  //             <Select
-  //               {...register("price")}
-  //               styles={makeStyles}
-  //               {...field}
-  //               options={makes}
-  //               isClearable={true}
-  //               isSearchable={true}
-  //               placeholder="Choose a brand"
-  //             />
-  //           )}
-  //         />
-  //       </label>
-  //       <label>
-  //         <StyledSpan>Price / 1 hour</StyledSpan>
-  //         <Controller
-  //           name="price"
-  //           control={control}
-  //           render={({ field }) => (
-  //             <Select
-  //               // {...register("price")}
-  //               placeholder="To $"
-  //               styles={priceStyles}
-  //               {...field}
-  //               options={price}
-  //               isClearable={true}
-  //               isSearchable={true}
-  //             />
-  //           )}
-  //         />
-  //       </label>
-  //       <label>
-  //         <StyledSpan>Сar mileage / km</StyledSpan>
-  //         <StyledInputWrapper>
-  //           <StyledMileageFromInput
-  //             type="number"
-  //             {...register("mileageFrom", {
-  //               min: { value: 0, message: "Min value 0" },
-  //             })}
-  //             placeholder="From"
-  //           />
-  //           {errors.mileageFrom && <StyledFromError>{errors.mileageFrom.message}</StyledFromError>}
-  //           <StyledMileageToInput
-  //             type="number"
-  //             placeholder="To"
-  //             {...register("mileageTo", {
-  //               min: { value: 0, message: "Min value 0" },
-  //             })}
-  //           />
-  //         {errors.mileageTo && <StyledToError>{errors.mileageTo.message}</StyledToError>}
-  //         </StyledInputWrapper>
-  //       </label>
-  //       <StyledSearchButton>Search</StyledSearchButton>
-  //       {filteredList.length ? (
-  //         <StyledSearchButton type="button" onClick={handleClearResults}>
-  //           Clear results
-  //         </StyledSearchButton>
-  //       ) : null}
-  //     </StyledForm>
-  //   </div>
-  // );
+  return (
+    <div>
+      <StyledFormMobile onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          <StyledSpanMobile>Car brand</StyledSpanMobile>
+          <Controller
+            name="make"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...register("price")}
+                styles={makeStyles}
+                {...field}
+                options={makes}
+                isClearable={true}
+                isSearchable={true}
+                placeholder="Choose a brand"
+              />
+            )}
+          />
+        </label>
+        <label>
+          <StyledSpanMobile>Price / 1 hour</StyledSpanMobile>
+          <Controller
+            name="price"
+            control={control}
+            render={({ field }) => (
+              <Select
+                // {...register("price")}
+                placeholder="To $"
+                styles={priceStyles}
+                {...field}
+                options={price}
+                isClearable={true}
+                isSearchable={true}
+              />
+            )}
+          />
+        </label>
+        <label>
+          <StyledSpanMobile>Сar mileage / km</StyledSpanMobile>
+          <StyledInputWrapperMobile>
+            <StyledMileageFromInputMobile
+              type="number"
+              {...register("mileageFrom", {
+                min: { value: 0, message: "Min value 0" },
+              })}
+              placeholder="From"
+            />
+            {errors.mileageFrom && <StyledFromErrorMobile>{errors.mileageFrom.message}</StyledFromErrorMobile>}
+            <StyledMileageToInputMobile
+              type="number"
+              placeholder="To"
+              {...register("mileageTo", {
+                min: { value: 0, message: "Min value 0" },
+              })}
+            />
+          {errors.mileageTo && <StyledToError>{errors.mileageTo.message}</StyledToError>}
+          </StyledInputWrapperMobile>
+        </label>
+        <StyledSearchButtonMobile>Search</StyledSearchButtonMobile>
+        {filteredList.length ? (
+          <StyledSearchButtonMobile type="button" onClick={handleClearResults}>
+            Clear results
+          </StyledSearchButtonMobile>
+        ) : null}
+      </StyledFormMobile>
+    </div>
+  );
 };
 
-export default SearchFormMobile;
+export default SearchForm;

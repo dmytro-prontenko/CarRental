@@ -5,8 +5,9 @@ import { Suspense } from "react";
 import Loader from "./components/Loader/Loader";
 import Catalog from "./pages/Catalog/Catalog";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Homepage from "./pages/Homepage/Homepage";
+import Favorites from "./pages/Favorites/Favorites";
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
         >
           <Route
             index
-            element={<Suspense fallback={<Loader />}>{<Homepage/>}</Suspense>}
+            element={<Suspense fallback={<Loader />}>{<Homepage />}</Suspense>}
           />
           <Route
             path="/catalog"
@@ -30,9 +31,7 @@ const App = () => {
           />
           <Route
             path="/favorites"
-            element={
-              <Suspense fallback={<Loader />}>{<p>FAVORITES</p>}</Suspense>
-            }
+            element={<Suspense fallback={<Loader />}>{<Favorites />}</Suspense>}
           />
         </Route>
 

@@ -12,6 +12,7 @@ const initialState = {
   reachOut: false,
   modalId: null,
   modalMenuStatus: false,
+  location:null,
 };
 
 export const carSlicer = createSlice({
@@ -37,6 +38,13 @@ export const carSlicer = createSlice({
     addFavorites: (state, { payload }) => {
       state.favoriteCars.push(payload);
     },
+    setFilteredCars: (state, { payload }) => {
+      state.filteredCars = payload;
+    },
+    setLocation: (state, { payload }) => {
+      state.location = payload;
+    },
+
   },
   extraReducers: (builder) => {
     builder
@@ -44,7 +52,6 @@ export const carSlicer = createSlice({
         state.cars.push(...payload);
         state.filteredCars = [];
         state.page++;
-        // state.favoriteCars = [];
         (state.isLoading = false),
           payload.length < 12
             ? (state.reachOut = true)
@@ -82,4 +89,6 @@ export const {
   setFavorites,
   addFavorites,
   toggleModalMenu,
+  setFilteredCars,
+  setLocation,
 } = carSlicer.actions;

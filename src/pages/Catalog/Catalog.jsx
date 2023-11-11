@@ -5,7 +5,7 @@ import GalleryItems from "../../components/GalleryItems/GalleryItems";
 import Modal from "../../components/Modal/Modal";
 import ModalCard from "../../components/ModalCard/ModalCard";
 import SearchForm from "../../components/SearchForm/SearchForm";
-import { setModalId } from "../../redux/carsReducer";
+import { setLocation, setModalId, setReachOut } from "../../redux/carsReducer";
 import { getCarsThunk } from "../../redux/thunks";
 import {
   GalleryWrapper,
@@ -16,17 +16,28 @@ import Loader from "../../components/Loader/Loader";
 import { ContainerStyles } from "../../General.styled";
 import { useMediaQuery } from "react-responsive";
 import SearchFormMobile from "../../components/SearchFormMobile/SearchFormMobile";
+import { useLocation } from "react-router-dom";
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
   const limit = useSelector((state) => state.cars.limit);
   const isLoading = useSelector((state) => state.cars.isLoading);
-  const isLoadingSearch = useSelector((state) => state.cars.isLoadingSearchForm);
+  const isLoadingSearch = useSelector(
+    (state) => state.cars.isLoadingSearchForm
+  );
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
+  const favoritesList = useSelector((state) => state.cars.favoriteCars);
   const isTabletAndDesktop = useMediaQuery({ query: "(min-width: 768px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const dispatch = useDispatch();
+  const location = useLocation();
+  const currentLocation = useSelector((state) => state.cars.location);
+
+  useEffect(() => {
+    dispatch(setLocation(location.pathname));
+
+  }, [dispatch, location.pathname]);
 
   useEffect(() => {
     if (page === 1) {
@@ -55,6 +66,13 @@ const Catalog = () => {
       });
   };
 
+  // useEffect(() => {
+  //   if (favoritesList.length && currentLocation === "/favorites") {
+  //     dispatch(setReachOut(true));
+  //   }
+
+  // }, [dispatch, favoritesList, currentLocation]);
+
   return (
     <ContainerStyles>
       {isMobile && <SearchFormMobile />}
@@ -69,7 +87,7 @@ const Catalog = () => {
             </StyledGalleryList>
             {!reachOut && isLoading ? (
               <Loader />
-            ) : !reachOut ? (
+            ) : !reachOut && currentLocation === '/catalog'  ? (
               <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
             ) : null}
           </>
