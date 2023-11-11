@@ -28,6 +28,7 @@ const GalleryItems = () => {
   const handleSetModalId = (id) => {
     dispatch(setModalId(id));
   };
+
   const handleAddToFavorites = (item) => {
     const existInFav = favoritesList?.some((car) => car.id === item.id);
     if (existInFav) {
@@ -37,9 +38,6 @@ const GalleryItems = () => {
       dispatch(addFavorites(item));
       toast.success(`Added to favorites`);
     }
-    // existInFav
-    //   ? dispatch(setFavorites(favoritesList.filter((car) => car.id !== item.id)))
-    //   : dispatch(addFavorites(item));
   };
 
   const carsItems = carsToRender.map((car) => {
@@ -77,7 +75,7 @@ const GalleryItems = () => {
           onClick={() => {
             handleAddToFavorites(car);
           }}
-          isFavorite={favoritesList.some((favCar) => favCar.id === car.id)}
+          $isFavorite={favoritesList.some((favCar) => favCar.id === car.id)}
         >
           <svg width="18" height="18">
             <use href={`${sprite}#icon-heart`} />
@@ -86,6 +84,7 @@ const GalleryItems = () => {
       </StyledCard>
     );
   });
+
   return carsItems;
 };
 

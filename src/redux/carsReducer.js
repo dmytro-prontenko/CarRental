@@ -21,7 +21,7 @@ export const carSlicer = createSlice({
     },
     setEmptyCarsList: (state) => {
       state.cars = [];
-      state.filteredCars = [];
+      // state.filteredCars = [];
       state.page = 1;
     },
     setReachOut: (state, { payload }) => {
@@ -40,7 +40,7 @@ export const carSlicer = createSlice({
         state.cars.push(...payload);
         state.filteredCars = [];
         state.page++;
-        state.favoriteCars = [];
+        // state.favoriteCars = [];
         (state.isLoading = false),
           payload.length < 12
             ? (state.reachOut = true)
