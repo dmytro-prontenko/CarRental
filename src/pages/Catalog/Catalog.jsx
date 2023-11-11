@@ -10,7 +10,7 @@ import Modal from "../../components/Modal/Modal";
 import ModalCard from "../../components/ModalCard/ModalCard";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import SearchFormMobile from "../../components/SearchFormMobile/SearchFormMobile";
-import { setLocation, setModalId } from "../../redux/carsReducer";
+import { setFilteredCars, setLocation, setModalId } from "../../redux/carsReducer";
 import { getCarsThunk } from "../../redux/thunks";
 import {
   GalleryWrapper,
@@ -36,6 +36,7 @@ const Catalog = () => {
 
   useEffect(() => {
     dispatch(setLocation(location.pathname));
+    dispatch(setFilteredCars([]))
 
   }, [dispatch, location.pathname]);
 
