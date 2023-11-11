@@ -84,8 +84,8 @@ export const StyledAddToFavBtn = styled.button`
   padding: 0;
   width: 18px;
   height: 18px;
-  top: 8px;
-  right: 8px;
+  top: 14px;
+  right: 14px;
   fill:none;
   stroke: white;
 

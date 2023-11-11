@@ -16,6 +16,7 @@ import {
   StyledLearnMoreBtn,
 } from "./GalleyItems.styled";
 import sprite from "../../assets/images/sprite.svg";
+import { toast } from "react-toastify";
 
 const GalleryItems = () => {
   const carsList = useSelector((state) => state.cars.cars);
@@ -29,9 +30,16 @@ const GalleryItems = () => {
   };
   const handleAddToFavorites = (item) => {
     const existInFav = favoritesList?.some((car) => car.id === item.id);
-    existInFav
-      ? dispatch(setFavorites(favoritesList.filter((car) => car.id !== item.id)))
-      : dispatch(addFavorites(item));
+    if (existInFav) {
+      dispatch(setFavorites(favoritesList.filter((car) => car.id !== item.id)));
+      toast.info(`Removed from favorites`)
+    } else {
+      dispatch(addFavorites(item));
+      toast.success(`Added to favorites`)
+    }
+    // existInFav
+    //   ? dispatch(setFavorites(favoritesList.filter((car) => car.id !== item.id)))
+    //   : dispatch(addFavorites(item));
   };
 
   const carsItems = carsToRender.map((car) => {
