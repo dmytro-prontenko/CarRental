@@ -10,6 +10,7 @@ const initialState = {
   limit: 12,
   reachOut: false,
   modalId: null,
+  modalMenuStatus: false,
 };
 
 export const carSlicer = createSlice({
@@ -18,6 +19,9 @@ export const carSlicer = createSlice({
   reducers: {
     setModalId: (state, { payload }) => {
       state.modalId = payload;
+    },
+    toggleModalMenu: (state) => {
+      state.modalMenuStatus = !state.modalMenuStatus;
     },
     setEmptyCarsList: (state) => {
       state.cars = [];
@@ -75,4 +79,5 @@ export const {
   setReachOut,
   setFavorites,
   addFavorites,
+  toggleModalMenu,
 } = carSlicer.actions;

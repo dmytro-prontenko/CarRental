@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="a" x1="12.066" x2="34.891" y1=".066" y2="22.891" gradientUnits="userSpaceOnUse">
+      <stop offset=".237" stop-color="#3470ff"/>
+      <stop offset=".85" stop-color="#0b44cd"/>
+    </linearGradient>
+    <linearGradient id="b" x1="12.066" x2="34.891" y1="12.066" y2="34.891" gradientUnits="userSpaceOnUse">
+      <stop offset=".237" stop-color="#3470ff"/>
+      <stop offset=".85" stop-color="#0b44cd"/>
+    </linearGradient>
+    <linearGradient id="c" x1="12.066" x2="34.891" y1="24.066" y2="46.891" gradientUnits="userSpaceOnUse">
+      <stop offset=".237" stop-color="#3470ff"/>
+      <stop offset=".85" stop-color="#0b44cd"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-miterlimit="10" font-family="none" font-size="none" font-weight="none" style="mix-blend-mode:normal" text-anchor="none">
+    <path fill="url(#a)" d="M43 15H5c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2h38c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2z" transform="scale(5.33333)"/>
+    <path fill="url(#b)" d="M43 27H5c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2h38c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2z" transform="scale(5.33333)"/>
+    <path fill="url(#c)" d="M43 39H5c-1.1 0-2-.9-2-2v-2c0-1.1.9-2 2-2h38c1.1 0 2 .9 2 2v2c0 1.1-.9 2-2 2z" transform="scale(5.33333)"/>
+  </g>
+</svg>

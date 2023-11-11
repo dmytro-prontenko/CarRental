@@ -6,6 +6,7 @@ import Loader from "./components/Loader/Loader";
 import Catalog from "./pages/Catalog/Catalog";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Homepage from "./pages/Homepage/Homepage";
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
         >
           <Route
             index
-            element={<Suspense fallback={<Loader />}>{<p>HOME</p>}</Suspense>}
+            element={<Suspense fallback={<Loader />}>{<Homepage/>}</Suspense>}
           />
           <Route
             path="/catalog"
