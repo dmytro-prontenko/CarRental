@@ -41,7 +41,7 @@ export const Childrens = styled.div`
 export const StyledButtonClose = styled.button`
   position: absolute;
   top: 16px;
-  right: 16px;
+  right: 8px;
   background-color: transparent;
   /* color: white; */
   border: none;
@@ -51,5 +51,9 @@ export const StyledButtonClose = styled.button`
   &:hover {
     cursor: pointer;
     /* box-shadow: 2px 2px 3px 1px gray; */
+  }
+
+  @media screen and (min-width: 768px) {
+    right:12px;
   }
 `;
