@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 import { ContainerStyles } from "../../General.styled";
 import GalleryItems from "../../components/GalleryItems/GalleryItems";
 import Loader from "../../components/Loader/Loader";
@@ -43,10 +42,10 @@ const Catalog = () => {
   useEffect(() => {
     if (page === 1) {
       dispatch(getCarsThunk({ page, limit }))
-        .unwrap()
-        .catch((error) => {
-          toast.info(error.message);
-        });
+        // .unwrap()
+        // .catch((error) => {
+        //   toast.info(error.message);
+        // });
     }
   }, [dispatch, page, limit]);
 
@@ -57,14 +56,14 @@ const Catalog = () => {
 
   const handleLoadMore = () => {
     dispatch(getCarsThunk({ page, limit }))
-      .unwrap()
-      .then(() => {
-        !reachOut;
-        toast.success("Received more records");
-      })
-      .catch((error) => {
-        toast.info(error.message);
-      });
+      // .unwrap()
+      // .then(() => {
+      //   !reachOut;
+      //   toast.success("Received more records");
+      // })
+      // .catch((error) => {
+      //   toast.info(error.message);
+      // });
   };
 
   // useEffect(() => {
