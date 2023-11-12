@@ -80,6 +80,7 @@ export const StyledAccessoriesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+
 `;
 
 export const StyledAccessoriesTitle = styled.div`
@@ -106,6 +107,13 @@ export const StyledAccessoriesList = styled.ul`
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
+  height: 70px;
+  overflow-y:scroll;
+
+  @media screen and (min-width: 768px) {
+    height: auto;
+    overflow-y:none;
+  }
 `;
 
 export const StyledListItem = styled.li`
