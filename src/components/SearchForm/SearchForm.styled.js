@@ -15,6 +15,7 @@ export const StyledForm = styled.form`
 
 export const FormBrandPriceWrapper = styled.div`
   display: flex;
+  gap:18px;
  
 `;
 

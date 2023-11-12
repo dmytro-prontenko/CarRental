@@ -10,16 +10,23 @@ import {
 } from "../../redux/carsReducer";
 import { getCarsByFilterThunk } from "../../redux/thunks";
 import {
-  StyledBackButton, StyledBackLink, StyledFormMobile,
+  StyledBackButton,
+  StyledBackLink,
+  StyledFormMobile,
   StyledFromErrorMobile,
   StyledInputWrapperMobile,
   StyledMileageFromInputMobile,
   StyledMileageToInputMobile,
   StyledSearchButtonMobile,
-  StyledSpanMobile, StyledToError
+  StyledSpanMobile,
+  StyledToError,
 } from "./SearchFormMobile.styled";
 import { makeStyles, priceStyles } from "./SelectMobile.styles";
-import { selectFavoriteCars, selectFilteredList, selectLocation } from "../../redux/selectors";
+import {
+  selectFavoriteCars,
+  selectFilteredList,
+  selectLocation,
+} from "../../redux/selectors";
 
 const price = [];
 
@@ -80,13 +87,16 @@ const SearchFormMobile = () => {
   const favoritesList = useSelector(selectFavoriteCars);
   const currentLocation = useSelector(selectLocation);
 
+  let uniqueMaker = [...new Set(favoritesList.map((item) => item.make))];
+  let favoritesListClear = uniqueMaker.map((make) => ({
+    label: make,
+    value: make,
+  }));
+
   let listForSelect;
   currentLocation === "/catalog"
     ? (listForSelect = makes)
-    : (listForSelect = favoritesList.map((car) => ({
-        value: car.make,
-        label: car.make,
-      })));
+    : (listForSelect = favoritesListClear);
 
   listForSelect.sort((a, b) => {
     if (a.value < b.value) {
@@ -109,11 +119,11 @@ const SearchFormMobile = () => {
       const { make, price, mileageFrom, mileageTo } = dataToDispatch;
 
       if (make || price || mileageFrom || mileageTo) {
-        dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }))
-          // .unwrap()
-          // .then(() => {
-          //   toast.success(`We found ${filteredList.length} cars`);
-          // });
+        dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }));
+        // .unwrap()
+        // .then(() => {
+        //   toast.success(`We found ${filteredList.length} cars`);
+        // });
         dispatch(setReachOut(true));
         reset(defaultValues);
       } else {
@@ -130,6 +140,7 @@ const SearchFormMobile = () => {
   const handleClearResults = () => {
     dispatch(setEmptyCarsList());
     dispatch(setFilteredCars([]));
+    reset(defaultValues);
   };
 
   return (
