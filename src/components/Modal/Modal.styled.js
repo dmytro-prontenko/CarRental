@@ -13,13 +13,18 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   position: relative;
   display: flex;
-  place-items:center;
+  place-items: center;
   background-color: white;
-  width: 541px;
-  height: 752px;
+  /* width: 541px;
+  height: 752px; */
   border-radius: 24px;
   background: #fff;
   padding: 40px 35px;
+
+  @media screen and (min-width: 768px) {
+    width: 541px;
+    height: 752px;
+  }
 `;
 export const Childrens = styled.div`
   display: flex;
@@ -41,7 +46,7 @@ export const StyledButtonClose = styled.button`
   /* color: white; */
   border: none;
   border-radius: 8px;
-  
+
   transition: all 0.1s ease-in;
   &:hover {
     cursor: pointer;

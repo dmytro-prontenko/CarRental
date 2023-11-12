@@ -3,6 +3,15 @@ import styled from "styled-components";
 export const StyledModalCard = styled.div`
   display: flex;
   flex-direction: column;
+  width: 320px;
+  height: 90vh;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+  @media screen and (min-width: 1280px) {
+  }
 `;
 export const StyledImage = styled.img`
   width: 100%;
@@ -87,11 +96,9 @@ export const StyledAccessoriesList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  /* list-style: none; */
 
   margin-bottom: 24px;
   padding: 0;
-  /* width: 424px; */
   color: rgba(18, 20, 23, 0.5);
 
   font-family: Manrope;
@@ -130,8 +137,11 @@ export const StyledConditionsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  width: 441px;
+
   margin-bottom: 36px;
+  @media screen and (min-width: 768px) {
+    width: 441px;
+  }
 `;
 
 export const StyledConditionItem = styled.li``;
