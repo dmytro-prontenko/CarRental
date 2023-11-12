@@ -30,7 +30,6 @@ export const StyledHeaderSpan = styled.span`
 `;
 
 export const StyledBlock = styled.div`
-  
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -38,7 +37,6 @@ export const StyledBlock = styled.div`
     width: calc(50% - 15px);
     margin-bottom: 30px;
   }
-
 `;
 
 export const StyledBlockWrapper = styled.div`
