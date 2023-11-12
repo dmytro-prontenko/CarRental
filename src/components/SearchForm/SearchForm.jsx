@@ -210,9 +210,9 @@ const SearchForm = () => {
           </StyledInputWrapper>
         </label>
         <FormButtonsWrapper>
-          <StyledSearchButton>Search</StyledSearchButton>
+          <StyledSearchButton name="search">Search</StyledSearchButton>
           {filteredList.length ? (
-            <StyledSearchButton type="button" onClick={handleClearResults}>
+            <StyledSearchButton name="clear-search" type="button" onClick={handleClearResults}>
               Clear results
             </StyledSearchButton>
           ) : null}

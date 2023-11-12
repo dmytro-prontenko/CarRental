@@ -32,7 +32,7 @@ const Modal = ({ onCloseModal, children }) => {
   return (
     <Wrapper onClick={onBackDropClick}>
       <Content>
-        <StyledButtonClose onClick={onCloseModal}>
+        <StyledButtonClose name={'close-modal'} onClick={onCloseModal}>
           <svg width="18" height="18">
             <use href={`${sprite}#icon-close`} />
           </svg>

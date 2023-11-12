@@ -146,7 +146,7 @@ const SearchFormMobile = () => {
   return (
     <div>
       {currentLocation === "/favorites" ? (
-        <StyledBackButton>
+        <StyledBackButton onClick={handleClearResults}>
           <svg width="18" height="18">
             <use href={`${sprite}#icon-arrow-back`} />
           </svg>
@@ -217,9 +217,9 @@ const SearchFormMobile = () => {
             )}
           </StyledInputWrapperMobile>
         </label>
-        <StyledSearchButtonMobile>Search</StyledSearchButtonMobile>
+        <StyledSearchButtonMobile name="search">Search</StyledSearchButtonMobile>
         {filteredList.length ? (
-          <StyledSearchButtonMobile type="button" onClick={handleClearResults}>
+          <StyledSearchButtonMobile name="clear-results" type="button" onClick={handleClearResults}>
             Clear results
           </StyledSearchButtonMobile>
         ) : null}

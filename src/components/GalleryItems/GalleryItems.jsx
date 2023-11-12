@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import notFoundImg from "../../assets/images/noFoundCar.png";
@@ -8,8 +9,15 @@ import {
   setModalId,
 } from "../../redux/carsReducer";
 import {
+  selectCarsList,
+  selectFavoriteCars,
+  selectFilteredList,
+  selectLocation,
+} from "../../redux/selectors";
+import {
   StyledAddToFavBtn,
   StyledCarInfo,
+  StyledCarInfoItem,
   StyledCarModel,
   StyledCarSubtitle,
   StyledCarTitle,
@@ -17,13 +25,6 @@ import {
   StyledImg,
   StyledLearnMoreBtn,
 } from "./GalleyItems.styled";
-import { useEffect } from "react";
-import {
-  selectCarsList,
-  selectFavoriteCars,
-  selectFilteredList,
-  selectLocation,
-} from "../../redux/selectors";
 
 const GalleryItems = () => {
   const carsList = useSelector(selectCarsList);
@@ -80,12 +81,13 @@ const GalleryItems = () => {
             <p>{car.rentalPrice}</p>
           </StyledCarTitle>
           <StyledCarInfo>
-            {`${car.address.split(", ")[1]} | ${car.address.split(", ")[2]} | ${
-              car.rentalCompany
-            } |
-            Premium | ${car.type} | ${car.model} | ${car.id} | ${
-              car.functionalities[0]
-            }`}
+            <StyledCarInfoItem>{car.address.split(", ")[1]}</StyledCarInfoItem>
+            <StyledCarInfoItem>{car.address.split(", ")[2]} </StyledCarInfoItem>
+            <StyledCarInfoItem>{car.rentalCompany}</StyledCarInfoItem>
+            <StyledCarInfoItem>Premium {car.type}</StyledCarInfoItem>
+            <StyledCarInfoItem>{car.model}</StyledCarInfoItem>
+            <StyledCarInfoItem>{car.id}</StyledCarInfoItem>
+            <StyledCarInfoItem>{car.functionalities[0]}</StyledCarInfoItem>
           </StyledCarInfo>
         </>
         <StyledLearnMoreBtn onClick={() => handleSetModalId(car.id)}>

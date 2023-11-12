@@ -86,7 +86,7 @@ const Homepage = () => {
           </StyledBlock>
         </StyledBlockWrapper>
 
-        <StyledStartButton>
+        <StyledStartButton name="go-to-catalog">
           <StyledStartLink to="/catalog">Let`s start</StyledStartLink>
         </StyledStartButton>
       </HomePageWrapper>

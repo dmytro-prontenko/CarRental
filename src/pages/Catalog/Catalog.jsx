@@ -131,7 +131,7 @@ const Catalog = () => {
         </Modal>
       )}
       {showToTopButton && (
-        <StyledToTopBtn onClick={scrollToTop}>
+        <StyledToTopBtn name="back-to-top" onClick={scrollToTop}>
           <svg width="24" height="24">
             <use href={`${sprite}#icon-up-arrow`} />
           </svg>

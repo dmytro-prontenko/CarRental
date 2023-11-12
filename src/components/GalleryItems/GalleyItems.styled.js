@@ -41,14 +41,27 @@ export const StyledCarSubtitle = styled.h4`
 export const StyledCarModel = styled.span`
   color: #3470ff;
 `;
-export const StyledCarInfo = styled.div`
+export const StyledCarInfo = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+  
   color: rgba(18, 20, 23, 0.5);
-
   font-family: Manrope;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
+`;
+
+export const StyledCarInfoItem = styled.li`
+  padding-right: 6px;
+  border-right: 1px solid rgba(18, 20, 23, 0.1);
+
+  &:last-of-type {
+    border: none;
+  }
 `;
 
 export const StyledLearnMoreBtn = styled.button`
