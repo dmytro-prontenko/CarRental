@@ -1,10 +1,10 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 // import background from '../../assets/images/background.webp';
 
 export const HomePageWrapper = styled.div`
   margin: 0 auto;
   /* color:white; */
-  
 `;
 
 export const StyledMainHeader = styled.h1`
@@ -23,11 +23,11 @@ export const StyledHeaderSpan = styled.span`
 export const StyledBlock = styled.div`
   display: flex;
   flex-direction: column;
-  /* width: 30%; */
   gap: 15px;
-  /* margin: 20px; */
   @media screen and (min-width: 768px) {
-    width: 30%;
+    /* width: 60%; */
+    width: calc(50% - 15px);
+    margin-bottom: 30px;
   }
 `;
 
@@ -36,11 +36,40 @@ export const StyledBlockWrapper = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
-    flex-direction: row;
+    margin-top: 70px;
+    justify-content: space-between;
     flex-wrap: wrap;
+    min-width: 768px;
   }
 
   @media screen and (min-width: 1280px) {
-    flex-wrap: nowrap;
+    min-width: 1280px;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
+
+  ${StyledBlock}:nth-child(even) {
+    margin-left: auto;
+  }
+
+  ${StyledBlock}:nth-child(odd) {
+    margin-right: auto;
+  }
+`;
+
+export const StyledStartButton = styled.button`
+  display: flex;
+
+  border: none;
+  background-color: #3470ff;
+  border-radius: 12px;
+  color: white;
+  margin: 40px auto;
+  padding: 0;
+`;
+
+export const StyledStartLink = styled(NavLink)`
+  width: 100%;
+  text-decoration: none;
+  padding: 14px 44px;
 `;

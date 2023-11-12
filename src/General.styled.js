@@ -9,8 +9,9 @@ export const ContainerStyles = styled.div`
   padding: 15px 25px;
 
   @media screen and (min-width: 768px) {
+    max-width:768px;
     width: 100%;
-    max-width: 768px;
+    min-width: 768px;
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -18,14 +19,9 @@ export const ContainerStyles = styled.div`
   @media screen and (min-width: 1280px) {
     width: 100%;
     min-width: 1280px;
-    /* padding-left: 91px;
-    padding-right: 91px; */
   }
 `;
 export const ContainerStylesWithBackground = styled.div`
-/* background-image:url(${background});
-background-size: cover;
-background-position: center center; */
   width: 100%;
   max-width: 375px;
   margin: 0 auto;
@@ -33,9 +29,10 @@ background-position: center center; */
 
   @media screen and (min-width: 768px) {
     width: 100%;
-    /* max-width: 768px; */
-    /* padding-left: 32px; */
-    /* padding-right: 32px; */
+    min-width: 768px;
+
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   @media screen and (min-width: 1280px) {
