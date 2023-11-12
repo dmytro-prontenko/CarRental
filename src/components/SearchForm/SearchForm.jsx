@@ -79,6 +79,7 @@ const SearchForm = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
@@ -97,7 +98,6 @@ const SearchForm = () => {
     ? (listForSelect = makes)
     : (listForSelect = favoritesListClear);
 
-
   listForSelect.sort((a, b) => {
     if (a.value < b.value) {
       return -1;
@@ -114,8 +114,9 @@ const SearchForm = () => {
       const dataToDispatch = { ...data };
       dataToDispatch.make = data.make?.value || null;
       dataToDispatch.price = +data.price?.value || null;
-      dataToDispatch.mileageFrom = +data.mileageFrom;
-      dataToDispatch.mileageTo = +data.mileageTo;
+      dataToDispatch.mileageFrom = +data.mileageFrom?.replace(",", "") || 0;
+      dataToDispatch.mileageTo = +data.mileageTo?.replace(",", "") || 0;
+
       const { make, price, mileageFrom, mileageTo } = dataToDispatch;
 
       if (make || price || mileageFrom || mileageTo) {
@@ -141,6 +142,10 @@ const SearchForm = () => {
     dispatch(setEmptyCarsList());
     dispatch(setFilteredCars([]));
     reset(defaultValues);
+  };
+
+  const handleChange = (value) => {
+    return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -188,8 +193,10 @@ const SearchForm = () => {
           <StyledSpan>Сar mileage / km</StyledSpan>
           <StyledInputWrapper>
             <StyledMileageFromInput
-              type="number"
+              type="tel"
               {...register("mileageFrom", {
+                onChange: (e) =>
+                  setValue("mileageFrom", handleChange(e.target.value)),
                 min: { value: 0, message: "Min value 0" },
               })}
               placeholder="From"
@@ -198,9 +205,11 @@ const SearchForm = () => {
               <StyledFromError>{errors.mileageFrom.message}</StyledFromError>
             )}
             <StyledMileageToInput
-              type="number"
+              type="tel"
               placeholder="To"
               {...register("mileageTo", {
+                onChange: (e) =>
+                  setValue("mileageTo", handleChange(e.target.value)),
                 min: { value: 0, message: "Min value 0" },
               })}
             />
@@ -210,9 +219,16 @@ const SearchForm = () => {
           </StyledInputWrapper>
         </label>
         <FormButtonsWrapper>
-          <StyledSearchButton id="search" title="Search cars">Search</StyledSearchButton>
+          <StyledSearchButton id="search" title="Search cars">
+            Search
+          </StyledSearchButton>
           {filteredList.length ? (
-            <StyledSearchButton id="clear-search" title="Clear search params" type="button" onClick={handleClearResults}>
+            <StyledSearchButton
+              id="clear-search"
+              title="Clear search params"
+              type="button"
+              onClick={handleClearResults}
+            >
               Clear results
             </StyledSearchButton>
           ) : null}

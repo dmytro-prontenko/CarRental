@@ -49,6 +49,7 @@ export const getCarsByFilterThunk = createAsyncThunk(
             (car) => car.mileage <= mileageTo
           );
         }
+        console.log(filterResultArray.length)
         // ---------- Filter end-------------
         filterResultArray.length
           ? toast.success(`We found ${filterResultArray.length} car for you`) 

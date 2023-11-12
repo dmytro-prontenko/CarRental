@@ -80,6 +80,7 @@ const SearchFormMobile = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
@@ -114,8 +115,8 @@ const SearchFormMobile = () => {
       const dataToDispatch = { ...data };
       dataToDispatch.make = data.make?.value || null;
       dataToDispatch.price = +data.price?.value || null;
-      dataToDispatch.mileageFrom = +data.mileageFrom;
-      dataToDispatch.mileageTo = +data.mileageTo;
+      dataToDispatch.mileageFrom = +data.mileageFrom?.replace(",", "") || 0;
+      dataToDispatch.mileageTo = +data.mileageTo?.replace(",", "") || 0;
       const { make, price, mileageFrom, mileageTo } = dataToDispatch;
 
       if (make || price || mileageFrom || mileageTo) {
@@ -141,6 +142,10 @@ const SearchFormMobile = () => {
     dispatch(setEmptyCarsList());
     dispatch(setFilteredCars([]));
     reset(defaultValues);
+  };
+
+  const handleChange = (value) => {
+    return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -196,8 +201,10 @@ const SearchFormMobile = () => {
           <StyledSpanMobile>Сar mileage / km</StyledSpanMobile>
           <StyledInputWrapperMobile>
             <StyledMileageFromInputMobile
-              type="number"
+              type="tel"
               {...register("mileageFrom", {
+                onChange: (e) =>
+                  setValue("mileageFrom", handleChange(e.target.value)),
                 min: { value: 0, message: "Min value 0" },
               })}
               placeholder="From"
@@ -208,9 +215,11 @@ const SearchFormMobile = () => {
               </StyledFromErrorMobile>
             )}
             <StyledMileageToInputMobile
-              type="number"
+              type="tel"
               placeholder="To"
               {...register("mileageTo", {
+                onChange: (e) =>
+                  setValue("mileageTo", handleChange(e.target.value)),
                 min: { value: 0, message: "Min value 0" },
               })}
             />
