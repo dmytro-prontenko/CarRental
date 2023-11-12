@@ -8,10 +8,12 @@ export const StyledGalleryList = styled.ul`
   width: 100%;
   row-gap: 50px;
   margin-top: 50px;
+  margin-bottom:25px;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 29px;
+    margin-bottom:40px;
   }
 
   @media screen and (min-width: 1280px) {

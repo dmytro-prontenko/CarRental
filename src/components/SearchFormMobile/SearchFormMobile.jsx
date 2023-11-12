@@ -2,13 +2,25 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { setEmptyCarsList, setFilteredCars, setReachOut } from "../../redux/carsReducer";
-import { getCarsByFilterThunk } from "../../redux/thunks";
 import {
-  StyledToError
+  setEmptyCarsList,
+  setFilteredCars,
+  setReachOut,
+} from "../../redux/carsReducer";
+import { getCarsByFilterThunk } from "../../redux/thunks";
+import { StyledBackButton, StyledBackLink, StyledToError } from "./SearchFormMobile.styled";
+import {
+  StyledFormMobile,
+  StyledFromErrorMobile,
+  StyledInputWrapperMobile,
+  StyledMileageFromInputMobile,
+  StyledMileageToInputMobile,
+  StyledSearchButtonMobile,
+  StyledSpanMobile,
 } from "./SearchFormMobile.styled";
-import { StyledFormMobile, StyledFromErrorMobile, StyledInputWrapperMobile, StyledMileageFromInputMobile, StyledMileageToInputMobile, StyledSearchButtonMobile, StyledSpanMobile } from "./SearchFormMobile.styled";
 import { makeStyles, priceStyles } from "./SelectMobile.styles";
+import { Link } from "react-router-dom";
+import sprite from "../../assets/images/sprite.svg";
 
 const price = [];
 
@@ -57,7 +69,6 @@ makes.sort((a, b) => {
 });
 
 const SearchFormMobile = () => {
-
   const {
     register,
     handleSubmit,
@@ -68,7 +79,7 @@ const SearchFormMobile = () => {
   const dispatch = useDispatch();
   const filteredList = useSelector((state) => state.cars.filteredCars);
   const favoritesList = useSelector((state) => state.cars.favoriteCars);
-  const currentLocation = useSelector(state => state.cars.location)
+  const currentLocation = useSelector((state) => state.cars.location);
 
   let listForSelect;
   currentLocation === "/catalog"
@@ -111,7 +122,7 @@ const SearchFormMobile = () => {
       }
     } else if (currentLocation === "/favorites") {
       const filteredCarsToDispatch = favoritesList.filter(
-        (car) => (car.make === data.make.value)
+        (car) => car.make === data.make.value
       );
       dispatch(setFilteredCars(filteredCarsToDispatch));
     }
@@ -124,6 +135,14 @@ const SearchFormMobile = () => {
 
   return (
     <div>
+      {currentLocation === "/favorites" ? (
+        <StyledBackButton>
+          <svg width="18" height="18">
+            <use href={`${sprite}#icon-arrow-back`} />
+          </svg>
+          <StyledBackLink to="/catalog">Back to catalog</StyledBackLink>
+        </StyledBackButton>
+      ) : null}
       <StyledFormMobile onSubmit={handleSubmit(onSubmit)}>
         <label>
           <StyledSpanMobile>Car brand</StyledSpanMobile>
@@ -171,7 +190,11 @@ const SearchFormMobile = () => {
               })}
               placeholder="From"
             />
-            {errors.mileageFrom && <StyledFromErrorMobile>{errors.mileageFrom.message}</StyledFromErrorMobile>}
+            {errors.mileageFrom && (
+              <StyledFromErrorMobile>
+                {errors.mileageFrom.message}
+              </StyledFromErrorMobile>
+            )}
             <StyledMileageToInputMobile
               type="number"
               placeholder="To"
@@ -179,7 +202,9 @@ const SearchFormMobile = () => {
                 min: { value: 0, message: "Min value 0" },
               })}
             />
-          {errors.mileageTo && <StyledToError>{errors.mileageTo.message}</StyledToError>}
+            {errors.mileageTo && (
+              <StyledToError>{errors.mileageTo.message}</StyledToError>
+            )}
           </StyledInputWrapperMobile>
         </label>
         <StyledSearchButtonMobile>Search</StyledSearchButtonMobile>

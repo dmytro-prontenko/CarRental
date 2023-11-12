@@ -25,6 +25,7 @@ export const StyledNavBar = styled.nav`
   display: flex;
   justify-content: space-between;
   margin: 15px 0;
+
 `;
 export const StyledLogo = styled(NavLink)`
   display: flex;

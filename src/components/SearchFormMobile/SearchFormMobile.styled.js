@@ -1,3 +1,4 @@
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledFormMobile = styled.form`
@@ -6,7 +7,7 @@ export const StyledFormMobile = styled.form`
   justify-content: center;
   align-items: center;
   gap: 18px;
-  margin-top: 40px;
+  margin-top: 15px;
   text-align: center;
 `;
 
@@ -112,4 +113,25 @@ export const StyledToError = styled.p`
   left: 171px;
   margin: 0;
   color: red;
+`;
+export const StyledBackButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+  border: none;
+  background-color: transparent;
+
+  color: #8a8a89;
+
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+`;
+export const StyledBackLink = styled(NavLink)`
+  text-decoration: none;
+  
 `;
