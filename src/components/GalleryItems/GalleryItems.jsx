@@ -17,6 +17,7 @@ import {
   StyledImg,
   StyledLearnMoreBtn,
 } from "./GalleyItems.styled";
+import { useEffect } from "react";
 
 const GalleryItems = () => {
   const carsList = useSelector((state) => state.cars.cars);
@@ -41,6 +42,10 @@ const GalleryItems = () => {
   const handleSetModalId = (id) => {
     dispatch(setModalId(id));
   };
+
+  useEffect(() => {
+    console.log(`favorites changed`);
+  }, [favoritesList]);
 
   const handleAddToFavorites = (item) => {
     const existInFav = favoritesList?.some((car) => car.id === item.id);
