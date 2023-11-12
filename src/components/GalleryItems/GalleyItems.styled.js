@@ -94,8 +94,7 @@ export const StyledAddToFavBtn = styled.button`
 
   &:hover {
     cursor: pointer;
-    /* fill: ${(props) => (props.$isFavorite ? "#0b44cd" : "#3470FF")}; */
-    stroke: ${(props) => (props.$isFavorite ? "#0b44cd" : "#3470FF")};
+    stroke: ${(props) => (props.$isFavorite ? "#3470FF" : "white")};
   }
 
   svg {
