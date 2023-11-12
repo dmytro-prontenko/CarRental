@@ -6,10 +6,11 @@ import {
   HomePageWrapper,
   StyledBlock,
   StyledBlockWrapper,
-  StyledHeaderSpan,
   StyledMainHeader,
+  StyledMainSubSubheader,
+  StyledMainSubheader,
   StyledStartButton,
-  StyledStartLink,
+  StyledStartLink
 } from "./Homepage.styled";
 
 const Homepage = () => {
@@ -20,16 +21,16 @@ const Homepage = () => {
           <span>
             Car<StyledSpan>Rentify</StyledSpan>
           </span>
-          <StyledHeaderSpan>
-            Drive into Adventure, Where Every Journey is an Expedition
-          </StyledHeaderSpan>
         </StyledMainHeader>
+          <StyledMainSubheader>
+            Drive into Adventure, Where Every Journey is an Expedition
+          </StyledMainSubheader>
         <StyledBlockWrapper>
           <StyledBlock>
-            <h2>
+            <StyledMainSubSubheader>
               Welcome to Car<StyledSpan>Rentify</StyledSpan>
-            </h2>
-            <h3>Discover the Freedom of Travel</h3>
+            </StyledMainSubSubheader>
+            <h4>Discover the Freedom of Travel</h4>
             <div>
               At CarRentify, we believe in providing more than just cars; we
               offer a gateway to freedom. Our commitment to excellence ensures
@@ -38,8 +39,8 @@ const Homepage = () => {
             </div>
           </StyledBlock>
           <StyledBlock>
-            <h2>About Us</h2>
-            <h3>Reliable Excellence Since 2008</h3>
+            <StyledMainSubSubheader>About Us</StyledMainSubSubheader>
+            <h4>Reliable Excellence Since 2008</h4>
             <div>
               Established with a vision to redefine car rental services,
               CarRentify has been a trusted name since 2008. Our unwavering
@@ -50,8 +51,8 @@ const Homepage = () => {
           </StyledBlock>
 
           <StyledBlock>
-            <h2>Explore Our Fleet</h2>
-            <h3>Time-Tested and Reliable</h3>
+            <StyledMainSubSubheader>Explore Our Fleet</StyledMainSubSubheader>
+            <h4>Time-Tested and Reliable</h4>
             <div>
               Embark on your journey with confidence, knowing that our fleet
               comprises not just cars but a collection of memories waiting to be
@@ -61,10 +62,10 @@ const Homepage = () => {
             </div>
           </StyledBlock>
           <StyledBlock>
-            <h2>
+            <StyledMainSubSubheader>
               Why Choose Car<StyledSpan>Rentify</StyledSpan>?
-            </h2>
-            <h3>Unmatched Advantages for Your Journey</h3>
+            </StyledMainSubSubheader>
+            <h4>Unmatched Advantages for Your Journey</h4>
             <ul>
               <li>
                 Quality Assurance: Our vehicles undergo rigorous inspections,

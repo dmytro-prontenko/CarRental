@@ -16,30 +16,40 @@ export const StyledMainHeader = styled.h1`
   margin: 0 auto;
 `;
 
+export const StyledMainSubheader = styled.h2`
+  text-align: center;
+  margin: 30px 0;
+`;
+export const StyledMainSubSubheader = styled.h2`
+  text-align: center;
+  margin: 30px;
+`;
+
 export const StyledHeaderSpan = styled.span`
   text-align: center;
 `;
 
 export const StyledBlock = styled.div`
+  
   display: flex;
   flex-direction: column;
   gap: 15px;
   @media screen and (min-width: 768px) {
-    /* width: 60%; */
     width: calc(50% - 15px);
     margin-bottom: 30px;
   }
+
 `;
 
 export const StyledBlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   @media screen and (min-width: 768px) {
-    margin-top: 70px;
     justify-content: space-between;
     flex-wrap: wrap;
-    min-width: 768px;
+    /* width: 768px; */
   }
 
   @media screen and (min-width: 1280px) {
@@ -48,12 +58,18 @@ export const StyledBlockWrapper = styled.div`
     flex-direction: row;
   }
 
+  ${StyledBlock} {
+    margin: 0; /* Сбросим стандартные отступы */
+  }
+
   ${StyledBlock}:nth-child(even) {
     margin-left: auto;
+    margin-right: 0;
   }
 
   ${StyledBlock}:nth-child(odd) {
     margin-right: auto;
+    margin-left: 0;
   }
 `;
 
