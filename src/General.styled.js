@@ -1,8 +1,8 @@
 import styled from "styled-components";
-// import background from './assets/images/background.webp';
-import background from './assets/images/background3.jpg';
+import background from './assets/images/background.webp';
 
 export const ContainerStyles = styled.div`
+
   width: 100%;
   max-width: 375px;
   margin: 0 auto;
@@ -17,11 +17,14 @@ export const ContainerStyles = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    /* background:url(${background});
+    background-position:center; */
     width: 100%;
     min-width: 1280px;
   }
 `;
 export const ContainerStylesWithBackground = styled.div`
+
   width: 100%;
   max-width: 375px;
   margin: 0 auto;

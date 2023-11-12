@@ -18,17 +18,21 @@ import {
   StyledLearnMoreBtn,
 } from "./GalleyItems.styled";
 import { useEffect } from "react";
+import {
+  selectCarsList,
+  selectFavoriteCars,
+  selectFilteredList,
+  selectLocation,
+} from "../../redux/selectors";
 
 const GalleryItems = () => {
-  const carsList = useSelector((state) => state.cars.cars);
-  const favoritesList = useSelector((state) => state.cars.favoriteCars);
-  const filteredList = useSelector((state) => state.cars.filteredCars);
-  const currentLocation = useSelector((state) => state.cars.location);
+  const carsList = useSelector(selectCarsList);
+  const favoritesList = useSelector(selectFavoriteCars);
+  const filteredList = useSelector(selectFilteredList);
+  const currentLocation = useSelector(selectLocation);
   let carsToRender;
-  // const location = useLocation();
   const dispatch = useDispatch();
 
-  // location.pathname === '/catalog' ? carsToRender = carsList : carsToRender=favoritesList;
   if (currentLocation === "/favorites" && filteredList.length) {
     carsToRender = filteredList;
   } else if (currentLocation === "/favorites") {
@@ -43,9 +47,7 @@ const GalleryItems = () => {
     dispatch(setModalId(id));
   };
 
-  useEffect(() => {
-    console.log(`favorites changed`);
-  }, [favoritesList]);
+  useEffect(() => {}, [favoritesList]);
 
   const handleAddToFavorites = (item) => {
     const existInFav = favoritesList?.some((car) => car.id === item.id);

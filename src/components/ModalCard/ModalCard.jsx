@@ -22,11 +22,12 @@ import {
   StyledRentTitle,
   StyledSpan,
 } from "./ModalCard.styled";
+import { selectCarsList, selectFilteredList, selectSearchedId } from "../../redux/selectors";
 
 const ModalCard = () => {
-  const searchId = useSelector((state) => state.cars.modalId);
-  const carsList = useSelector((state) => state.cars.cars);
-  const filteredList = useSelector((state) => state.cars.filteredCars);
+  const searchId = useSelector(selectSearchedId);
+  const carsList = useSelector(selectCarsList);
+  const filteredList = useSelector(selectFilteredList);
   const cars = filteredList.length ? filteredList : carsList
   const {
     img,

@@ -21,6 +21,7 @@ import {
   StyledToError,
 } from "./SearchForm.styled";
 import { makeStyles, priceStyles } from "./Select.styles";
+import { selectFavoriteCars, selectFilteredList, selectLocation } from "../../redux/selectors";
 
 const price = [];
 
@@ -78,9 +79,9 @@ const SearchForm = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const filteredList = useSelector((state) => state.cars.filteredCars);
-  const favoritesList = useSelector((state) => state.cars.favoriteCars);
-  const currentLocation = useSelector(state => state.cars.location)
+  const filteredList = useSelector(selectFilteredList);
+  const favoritesList = useSelector(selectFavoriteCars);
+  const currentLocation = useSelector(selectLocation)
 
   let listForSelect;
   currentLocation === "/catalog"

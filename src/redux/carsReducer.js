@@ -71,11 +71,9 @@ export const carSlicer = createSlice({
         state.isLoadingSearchForm = false;
       })
       .addCase(getCarsByFilterThunk.pending, (state) => {
-        // state.isLoading = true;
         state.isLoadingSearchForm = true;
       })
       .addCase(getCarsByFilterThunk.rejected, (state) => {
-        // state.isLoading = false;
         state.isLoadingSearchForm = false;
       });
   },

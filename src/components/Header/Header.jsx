@@ -12,10 +12,13 @@ import {
   StyledNavWrapper,
   StyledNavigationLinks,
 } from "./Header.styled";
+import { selectModalStatus } from "../../redux/selectors";
 
 const Header = () => {
-  const modalMenuStatus = useSelector((state) => state.cars.modalMenuStatus);
+  const modalMenuStatus = useSelector(selectModalStatus);
   const dispatch = useDispatch();
+
+
   const handleMenuOpen = () => {
     dispatch(toggleModalMenu());
   };
