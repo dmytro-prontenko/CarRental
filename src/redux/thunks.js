@@ -51,10 +51,10 @@ export const getCarsByFilterThunk = createAsyncThunk(
         }
         // ---------- Filter end-------------
         filterResultArray.length
-          ? toast.success(`We found ${filterResultArray.length} car for you`) : null
-          // : toast.error(
-          //     `Unfortunately there are no cars matching  search criteria.`
-          //   );
+          ? toast.success(`We found ${filterResultArray.length} car for you`) 
+          : toast.error(
+              `Unfortunately there are no cars matching  search criteria.`
+            );
         return filterResultArray;
       } else {
         throw new Error("You have reached the end. There are no more data.");

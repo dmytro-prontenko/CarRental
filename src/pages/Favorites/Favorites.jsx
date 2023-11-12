@@ -1,10 +1,15 @@
 
+import { useSelector } from 'react-redux'
 import Catalog from '../Catalog/Catalog'
+import { selectFavoriteCars } from '../../redux/selectors'
+import NoDataPage from '../../components/NoDataPage / NoDataPage';
+
 
 const Favorites = () => {
+  const favoritesList = useSelector(selectFavoriteCars);
   return (
     <div>
-      <Catalog/>
+      {favoritesList.length ? <Catalog/> : <NoDataPage/>}
     </div>
   )
 }

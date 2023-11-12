@@ -37,7 +37,15 @@ const App = () => {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <ToastContainer autoClose={1500} />
+      <ToastContainer
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        position="top-left"
+        theme="colored"
+      />
     </>
   );
 };
