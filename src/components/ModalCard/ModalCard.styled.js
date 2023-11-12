@@ -80,7 +80,6 @@ export const StyledAccessoriesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-
 `;
 
 export const StyledAccessoriesTitle = styled.div`
@@ -108,11 +107,11 @@ export const StyledAccessoriesList = styled.ul`
   font-weight: 400;
   line-height: 18px;
   height: 70px;
-  overflow-y:scroll;
+  overflow-y: scroll;
 
   @media screen and (min-width: 768px) {
     height: auto;
-    overflow-y:none;
+    overflow-y: none;
   }
 `;
 
@@ -146,8 +145,9 @@ export const StyledConditionsList = styled.ul`
   flex-wrap: wrap;
   gap: 8px;
 
-  margin-bottom: 36px;
+  margin-bottom: 20px;
   @media screen and (min-width: 768px) {
+    margin-bottom: 36px;
     width: 441px;
   }
 `;

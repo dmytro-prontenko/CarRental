@@ -19,7 +19,7 @@ export const Content = styled.div`
   height: 752px; */
   border-radius: 24px;
   background: #fff;
-  padding: 40px 35px;
+  padding: 20px 35px;
 
   @media screen and (min-width: 768px) {
     width: 541px;
