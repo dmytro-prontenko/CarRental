@@ -2,25 +2,23 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
+import sprite from "../../assets/images/sprite.svg";
 import {
   setEmptyCarsList,
   setFilteredCars,
   setReachOut,
 } from "../../redux/carsReducer";
 import { getCarsByFilterThunk } from "../../redux/thunks";
-import { StyledBackButton, StyledBackLink, StyledToError } from "./SearchFormMobile.styled";
 import {
-  StyledFormMobile,
+  StyledBackButton, StyledBackLink, StyledFormMobile,
   StyledFromErrorMobile,
   StyledInputWrapperMobile,
   StyledMileageFromInputMobile,
   StyledMileageToInputMobile,
   StyledSearchButtonMobile,
-  StyledSpanMobile,
+  StyledSpanMobile, StyledToError
 } from "./SearchFormMobile.styled";
 import { makeStyles, priceStyles } from "./SelectMobile.styles";
-import { Link } from "react-router-dom";
-import sprite from "../../assets/images/sprite.svg";
 
 const price = [];
 

@@ -8,12 +8,12 @@ export const StyledGalleryList = styled.ul`
   width: 100%;
   row-gap: 50px;
   margin-top: 50px;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 29px;
-    margin-bottom:40px;
+    margin-bottom: 40px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -51,4 +51,22 @@ export const LoadMoreBtn = styled.button`
   &:hover {
     color: #0b44cd;
   }
+`;
+
+export const StyledToTopBtn = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* & svg {
+    width: 100%;
+    height: 100%;
+  } */
 `;

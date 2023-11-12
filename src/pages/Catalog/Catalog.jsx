@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { useLocation } from "react-router-dom";
@@ -15,7 +15,10 @@ import {
   GalleryWrapper,
   LoadMoreBtn,
   StyledGalleryList,
+  StyledToTopBtn,
 } from "./Catalog.styled";
+
+import sprite from "../../assets/images/sprite.svg";
 
 const Catalog = () => {
   const page = useSelector((state) => state.cars.page);
@@ -26,12 +29,12 @@ const Catalog = () => {
   );
   const reachOut = useSelector((state) => state.cars.reachOut);
   const triggerForModal = useSelector((state) => state.cars.modalId);
-  // const favoritesList = useSelector((state) => state.cars.favoriteCars);
   const isTabletAndDesktop = useMediaQuery({ query: "(min-width: 768px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const dispatch = useDispatch();
   const location = useLocation();
   const currentLocation = useSelector((state) => state.cars.location);
+  const [showToTopButton, setShowToTopButton] = useState(false);
 
   useEffect(() => {
     dispatch(setLocation(location.pathname));
@@ -48,6 +51,26 @@ const Catalog = () => {
         // });
     }
   }, [dispatch, page, limit]);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+      setShowToTopButton(scrollTop > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const handleModalClose = () => {
     dispatch(setModalId(null));
@@ -97,6 +120,13 @@ const Catalog = () => {
         <Modal onCloseModal={handleModalClose}>
           <ModalCard />
         </Modal>
+      )}
+      {showToTopButton && (
+        <StyledToTopBtn onClick={scrollToTop}>
+          <svg width="24" height="24">
+            <use href={`${sprite}#icon-up-arrow`} />
+          </svg>
+        </StyledToTopBtn>
       )}
     </ContainerStyles>
   );
