@@ -217,9 +217,9 @@ const SearchFormMobile = () => {
             )}
           </StyledInputWrapperMobile>
         </label>
-        <StyledSearchButtonMobile name="search">Search</StyledSearchButtonMobile>
+        <StyledSearchButtonMobile id="search" title="Search cars">Search</StyledSearchButtonMobile>
         {filteredList.length ? (
-          <StyledSearchButtonMobile name="clear-results" type="button" onClick={handleClearResults}>
+          <StyledSearchButtonMobile id="clear-results" title="Clear search params" type="button" onClick={handleClearResults}>
             Clear results
           </StyledSearchButtonMobile>
         ) : null}

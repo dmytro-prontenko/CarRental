@@ -49,7 +49,7 @@ const ModalMenu = () => {
             Favorites
           </StyledNavLink>
         </StyledNavigationLinksModal>
-        <StyledButtonClose name="close-modal" onClick={onCloseModal}>
+        <StyledButtonClose id="close-modal" title="Close modal window" onClick={onCloseModal}>
           <svg width="18" height="18">
             <use href={`${sprite}#icon-cross-modal`} />
           </svg>

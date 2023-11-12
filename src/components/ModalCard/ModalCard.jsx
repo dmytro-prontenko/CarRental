@@ -122,7 +122,7 @@ const ModalCard = () => {
           </StyledConditionItem>
         </StyledConditionsList>
       </StyledRentConditions>
-      <StyledModalButton name="contact-button" href="tel:+380730000000">Rental car</StyledModalButton>
+      <StyledModalButton id="contact-button" title="Rental car" href="tel:+380730000000">Rental car</StyledModalButton>
     </StyledModalCard>
   );
 };

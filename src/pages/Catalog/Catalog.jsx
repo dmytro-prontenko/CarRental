@@ -120,7 +120,7 @@ const Catalog = () => {
             {!reachOut && isLoading ? (
               <Loader />
             ) : !reachOut && currentLocation === "/catalog" ? (
-              <LoadMoreBtn onClick={handleLoadMore}>Load more</LoadMoreBtn>
+              <LoadMoreBtn id="loadMore" title="Load more" onClick={handleLoadMore}>Load more</LoadMoreBtn>
             ) : null}
           </>
         )}
@@ -131,7 +131,7 @@ const Catalog = () => {
         </Modal>
       )}
       {showToTopButton && (
-        <StyledToTopBtn name="back-to-top" onClick={scrollToTop}>
+        <StyledToTopBtn id="backToTop" title="Back to top" onClick={scrollToTop}>
           <svg width="24" height="24">
             <use href={`${sprite}#icon-up-arrow`} />
           </svg>
