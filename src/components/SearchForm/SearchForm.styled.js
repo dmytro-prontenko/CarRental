@@ -2,10 +2,20 @@ import styled from "styled-components";
 
 export const StyledForm = styled.form`
   display: flex;
+  flex-direction:column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   gap: 18px;
   margin-top: 40px;
+  @media screen and (min-width: 1280px) {
+    flex-direction:row;
+    align-items:flex-end;
+  }
+`;
+
+export const FormBrandPriceWrapper = styled.div`
+  display: flex;
+ 
 `;
 
 export const StyledSpan = styled.span`
@@ -47,7 +57,6 @@ export const StyledMileageFromInput = styled.input`
   line-height: 20px;
 `;
 export const StyledMileageToInput = styled.input`
-
   display: flex;
   width: 160px;
   height: 48px;
@@ -69,6 +78,11 @@ export const StyledMileageToInput = styled.input`
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
+`;
+
+export const FormButtonsWrapper = styled.div`
+  display: flex;
+  gap:20px;
 `;
 
 export const StyledSearchButton = styled.button`
@@ -102,7 +116,7 @@ export const StyledFromError = styled.p`
   top: 50px;
   left: 10px;
   margin: 0;
-  color: red
+  color: red;
 `;
 export const StyledToError = styled.p`
   font-size: 0.5rem;
@@ -110,5 +124,5 @@ export const StyledToError = styled.p`
   top: 50px;
   left: 171px;
   margin: 0;
-  color: red
+  color: red;
 `;

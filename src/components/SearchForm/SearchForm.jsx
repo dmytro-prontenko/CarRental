@@ -9,6 +9,8 @@ import {
 } from "../../redux/carsReducer";
 import { getCarsByFilterThunk } from "../../redux/thunks";
 import {
+  FormBrandPriceWrapper,
+  FormButtonsWrapper,
   StyledForm,
   StyledFromError,
   StyledInputWrapper,
@@ -135,42 +137,44 @@ const SearchForm = () => {
   return (
     <div>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          <StyledSpan>Car brand</StyledSpan>
-          <Controller
-            name="make"
-            control={control}
-            render={({ field }) => (
-              <Select
-                {...register("price")}
-                styles={makeStyles}
-                {...field}
-                options={listForSelect}
-                isClearable={true}
-                isSearchable={true}
-                placeholder="Choose a brand"
-              />
-            )}
-          />
-        </label>
-        <label>
-          <StyledSpan>Price / 1 hour</StyledSpan>
-          <Controller
-            name="price"
-            control={control}
-            render={({ field }) => (
-              <Select
-                // {...register("price")}
-                placeholder="To $"
-                styles={priceStyles}
-                {...field}
-                options={price}
-                isClearable={true}
-                isSearchable={true}
-              />
-            )}
-          />
-        </label>
+        <FormBrandPriceWrapper>
+          <label>
+            <StyledSpan>Car brand</StyledSpan>
+            <Controller
+              name="make"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...register("price")}
+                  styles={makeStyles}
+                  {...field}
+                  options={listForSelect}
+                  isClearable={true}
+                  isSearchable={true}
+                  placeholder="Choose a brand"
+                />
+              )}
+            />
+          </label>
+          <label>
+            <StyledSpan>Price / 1 hour</StyledSpan>
+            <Controller
+              name="price"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  // {...register("price")}
+                  placeholder="To $"
+                  styles={priceStyles}
+                  {...field}
+                  options={price}
+                  isClearable={true}
+                  isSearchable={true}
+                />
+              )}
+            />
+          </label>
+        </FormBrandPriceWrapper>
         <label>
           <StyledSpan>Сar mileage / km</StyledSpan>
           <StyledInputWrapper>
@@ -196,12 +200,14 @@ const SearchForm = () => {
             )}
           </StyledInputWrapper>
         </label>
-        <StyledSearchButton>Search</StyledSearchButton>
-        {filteredList.length ? (
-          <StyledSearchButton type="button" onClick={handleClearResults}>
-            Clear results
-          </StyledSearchButton>
-        ) : null}
+        <FormButtonsWrapper>
+          <StyledSearchButton>Search</StyledSearchButton>
+          {filteredList.length ? (
+            <StyledSearchButton type="button" onClick={handleClearResults}>
+              Clear results
+            </StyledSearchButton>
+          ) : null}
+        </FormButtonsWrapper>
       </StyledForm>
     </div>
   );
