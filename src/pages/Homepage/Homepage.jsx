@@ -31,7 +31,7 @@ const Homepage = () => {
             </h2>
             <h3>Discover the Freedom of Travel</h3>
             <div>
-              At CarRental, we believe in providing more than just cars; we
+              At CarRentify, we believe in providing more than just cars; we
               offer a gateway to freedom. Our commitment to excellence ensures
               an unparalleled rental experience, empowering you to explore the
               world on your terms.
@@ -42,7 +42,7 @@ const Homepage = () => {
             <h3>Reliable Excellence Since 2008</h3>
             <div>
               Established with a vision to redefine car rental services,
-              CarRental has been a trusted name since 2008. Our unwavering
+              CarRentify has been a trusted name since 2008. Our unwavering
               dedication to customer satisfaction and a fleet of meticulously
               maintained vehicles have made us a preferred choice for countless
               travelers.
