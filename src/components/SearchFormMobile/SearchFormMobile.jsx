@@ -147,10 +147,12 @@ const SearchFormMobile = () => {
     <div>
       {currentLocation === "/favorites" ? (
         <StyledBackButton onClick={handleClearResults}>
-          <svg width="18" height="18">
-            <use href={`${sprite}#icon-arrow-back`} />
-          </svg>
-          <StyledBackLink to="/catalog">Back to catalog</StyledBackLink>
+          <StyledBackLink to="/catalog">
+            <svg width="18" height="18">
+              <use href={`${sprite}#icon-arrow-back`} />
+            </svg>
+            Back to catalog
+          </StyledBackLink>
         </StyledBackButton>
       ) : null}
       <StyledFormMobile onSubmit={handleSubmit(onSubmit)}>
@@ -217,9 +219,16 @@ const SearchFormMobile = () => {
             )}
           </StyledInputWrapperMobile>
         </label>
-        <StyledSearchButtonMobile id="search" title="Search cars">Search</StyledSearchButtonMobile>
+        <StyledSearchButtonMobile id="search" title="Search cars">
+          Search
+        </StyledSearchButtonMobile>
         {filteredList.length ? (
-          <StyledSearchButtonMobile id="clear-results" title="Clear search params" type="button" onClick={handleClearResults}>
+          <StyledSearchButtonMobile
+            id="clear-results"
+            title="Clear search params"
+            type="button"
+            onClick={handleClearResults}
+          >
             Clear results
           </StyledSearchButtonMobile>
         ) : null}

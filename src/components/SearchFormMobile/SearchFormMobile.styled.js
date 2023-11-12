@@ -120,6 +120,7 @@ export const StyledBackButton = styled.button`
   align-items: center;
 
   margin: 0 auto;
+  padding: 0;
   border: none;
   background-color: transparent;
 
@@ -133,5 +134,7 @@ export const StyledBackButton = styled.button`
 `;
 export const StyledBackLink = styled(NavLink)`
   text-decoration: none;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
