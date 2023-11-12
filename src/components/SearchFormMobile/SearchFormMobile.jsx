@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { setEmptyCarsList, setReachOut } from "../../redux/carsReducer";
+import { setEmptyCarsList, setFilteredCars, setReachOut } from "../../redux/carsReducer";
 import { getCarsByFilterThunk } from "../../redux/thunks";
 import {
   StyledToError
@@ -56,7 +56,8 @@ makes.sort((a, b) => {
   return 0;
 });
 
-const SearchForm = () => {
+const SearchFormMobile = () => {
+
   const {
     register,
     handleSubmit,
@@ -66,32 +67,59 @@ const SearchForm = () => {
   } = useForm();
   const dispatch = useDispatch();
   const filteredList = useSelector((state) => state.cars.filteredCars);
+  const favoritesList = useSelector((state) => state.cars.favoriteCars);
+  const currentLocation = useSelector(state => state.cars.location)
+
+  let listForSelect;
+  currentLocation === "/catalog"
+    ? (listForSelect = makes)
+    : (listForSelect = favoritesList.map((car) => ({
+        value: car.make,
+        label: car.make,
+      })));
+
+  listForSelect.sort((a, b) => {
+    if (a.value < b.value) {
+      return -1;
+    }
+    if (a.value > b.value) {
+      return 1;
+    }
+    return 0;
+  });
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    const dataToDispatch = { ...data };
-    dataToDispatch.make = data.make?.value || null;
-    dataToDispatch.price = +data.price?.value || null;
-    dataToDispatch.mileageFrom = +data.mileageFrom;
-    dataToDispatch.mileageTo = +data.mileageTo;
-    const { make, price, mileageFrom, mileageTo } = dataToDispatch;
+    if (currentLocation === "/catalog") {
+      const dataToDispatch = { ...data };
+      dataToDispatch.make = data.make?.value || null;
+      dataToDispatch.price = +data.price?.value || null;
+      dataToDispatch.mileageFrom = +data.mileageFrom;
+      dataToDispatch.mileageTo = +data.mileageTo;
+      const { make, price, mileageFrom, mileageTo } = dataToDispatch;
 
-    if (make || price || mileageFrom || mileageTo) {
-      dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }))
-        .unwrap()
-        .then(() => {
-          toast.success(`We found ${filteredList.length} cars`);
-        });
-      dispatch(setReachOut(true));
-      reset(defaultValues);
-    } else {
-      toast.info("You must choose at least one field for filtering");
+      if (make || price || mileageFrom || mileageTo) {
+        dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }))
+          .unwrap()
+          .then(() => {
+            toast.success(`We found ${filteredList.length} cars`);
+          });
+        dispatch(setReachOut(true));
+        reset(defaultValues);
+      } else {
+        toast.info("You must choose at least one field for filtering");
+      }
+    } else if (currentLocation === "/favorites") {
+      const filteredCarsToDispatch = favoritesList.filter(
+        (car) => (car.make === data.make.value)
+      );
+      dispatch(setFilteredCars(filteredCarsToDispatch));
     }
   };
 
   const handleClearResults = () => {
     dispatch(setEmptyCarsList());
-    // dispatch(setReachOut(false));
+    dispatch(setFilteredCars([]));
   };
 
   return (
@@ -107,7 +135,7 @@ const SearchForm = () => {
                 {...register("price")}
                 styles={makeStyles}
                 {...field}
-                options={makes}
+                options={listForSelect}
                 isClearable={true}
                 isSearchable={true}
                 placeholder="Choose a brand"
@@ -165,4 +193,4 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm;
+export default SearchFormMobile;
