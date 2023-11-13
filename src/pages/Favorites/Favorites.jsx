@@ -16,7 +16,6 @@ const containerVariants = {
     },
   },
   exit: {
-    // x: "-100vw",
     transition: { ease: "linear" },
   },
 };

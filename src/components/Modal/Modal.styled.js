@@ -15,8 +15,6 @@ export const Content = styled.div`
   display: flex;
   place-items: center;
   background-color: white;
-  /* width: 541px;
-  height: 752px; */
   border-radius: 24px;
   background: #fff;
   padding: 20px 20px;

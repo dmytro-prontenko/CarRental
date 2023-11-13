@@ -88,22 +88,7 @@ const Catalog = () => {
 
   const handleLoadMore = () => {
     dispatch(getCarsThunk({ page, limit }));
-    // .unwrap()
-    // .then(() => {
-    //   !reachOut;
-    //   toast.success("Received more records");
-    // })
-    // .catch((error) => {
-    //   toast.info(error.message);
-    // });
   };
-
-  // useEffect(() => {
-  //   if (favoritesList.length && currentLocation === "/favorites") {
-  //     dispatch(setReachOut(true));
-  //   }
-
-  // }, [dispatch, favoritesList, currentLocation]);
 
   const containerVariants = {
     hidden: {
@@ -117,7 +102,6 @@ const Catalog = () => {
       },
     },
     exit: {
-      // x: "-100vw",
       transition: { ease: "tween" },
     },
   };

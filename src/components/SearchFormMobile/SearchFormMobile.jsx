@@ -121,10 +121,6 @@ const SearchFormMobile = () => {
 
       if (make || price || mileageFrom || mileageTo) {
         dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }));
-        // .unwrap()
-        // .then(() => {
-        //   toast.success(`We found ${filteredList.length} cars`);
-        // });
         dispatch(setReachOut(true));
         reset(defaultValues);
       } else {
@@ -186,7 +182,7 @@ const SearchFormMobile = () => {
             control={control}
             render={({ field }) => (
               <Select
-                // {...register("price")}
+                {...register("price")}
                 placeholder="To $"
                 styles={priceStyles}
                 {...field}

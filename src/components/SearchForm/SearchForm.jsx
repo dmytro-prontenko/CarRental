@@ -120,10 +120,6 @@ const SearchForm = () => {
     if (currentLocation === "/catalog") {
       if (make || price || mileageFrom || mileageTo) {
         dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }));
-        // .unwrap()
-        // .then(() => {
-        //   toast.success(`We found ${filteredList.length} cars`);
-        // });
         dispatch(setReachOut(true));
         reset(defaultValues);
       } else {

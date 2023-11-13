@@ -36,7 +36,6 @@ const ModalCard = () => {
   const car = cars.find((car) => car.id === searchId);
 
   if (!car) {
-    // Handle the case where the car is not found, for example, display an error message or redirect.
     return;
   }
   const {
