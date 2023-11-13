@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import "./App.css";
 import Layout from "./components/Layout/Layout";
 import { Suspense } from "react";
 import Loader from "./components/Loader/Loader";
