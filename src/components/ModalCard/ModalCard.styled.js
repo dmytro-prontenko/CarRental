@@ -18,7 +18,11 @@ export const StyledImage = styled.img`
   height: 248px;
   border-radius: 14px;
   object-fit: cover;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom:14px;
+  }
 `;
 
 export const StyledCardHeader = styled.div`
@@ -45,8 +49,8 @@ export const StyledCarInfoList = styled.ul`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 14px;
+  gap: 0 6px;
+  margin-bottom: 10px;
   color: rgba(18, 20, 23, 0.5);
 
   font-family: Manrope;
@@ -54,6 +58,11 @@ export const StyledCarInfoList = styled.ul`
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom:14px;
+    gap: 6px;
+  }
 `;
 
 export const StyledInfoFirstRow = styled.div`
@@ -69,11 +78,17 @@ export const StyledDescription = styled.div`
   color: #121417;
 
   font-family: Manrope;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px;
-  margin-bottom: 24px;
+  line-height: 14px;
+  margin-bottom: 7px;
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom:24px;
+    line-height: 20px;
+    font-size: 14px;
+  }
 `;
 
 export const StyledAccessoriesWrapper = styled.div`
@@ -86,32 +101,38 @@ export const StyledAccessoriesTitle = styled.div`
   color: #121417;
 
   font-family: Manrope;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
+  @media screen and (min-width: 1280px) {
+    font-size: 14px;
+  }
 `;
 
 export const StyledAccessoriesList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 0 6px;
 
-  margin-bottom: 24px;
+  margin-bottom: 7px;
   padding: 0;
   color: rgba(18, 20, 23, 0.5);
 
   font-family: Manrope;
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
   height: 70px;
   overflow-y: scroll;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     height: auto;
     overflow-y: none;
+    margin-bottom:24px;
+    font-size: 12px;
+    gap: 0 6px;
   }
 `;
 

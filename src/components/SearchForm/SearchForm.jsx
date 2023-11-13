@@ -109,16 +109,15 @@ const SearchForm = () => {
   });
 
   const onSubmit = (data, e) => {
+    console.log(data);
     e.preventDefault();
+    const dataToDispatch = { ...data };
+    dataToDispatch.make = data.make?.value || null;
+    dataToDispatch.price = +data.price?.value || null;
+    dataToDispatch.mileageFrom = +data.mileageFrom?.replace(",", "") || 0;
+    dataToDispatch.mileageTo = +data.mileageTo?.replace(",", "") || 0;
+    const { make, price, mileageFrom, mileageTo } = dataToDispatch;
     if (currentLocation === "/catalog") {
-      const dataToDispatch = { ...data };
-      dataToDispatch.make = data.make?.value || null;
-      dataToDispatch.price = +data.price?.value || null;
-      dataToDispatch.mileageFrom = +data.mileageFrom?.replace(",", "") || 0;
-      dataToDispatch.mileageTo = +data.mileageTo?.replace(",", "") || 0;
-
-      const { make, price, mileageFrom, mileageTo } = dataToDispatch;
-
       if (make || price || mileageFrom || mileageTo) {
         dispatch(getCarsByFilterThunk({ make, price, mileageFrom, mileageTo }));
         // .unwrap()
@@ -131,10 +130,40 @@ const SearchForm = () => {
         toast.info("You must choose at least one field for filtering");
       }
     } else if (currentLocation === "/favorites") {
-      const filteredCarsToDispatch = favoritesList.filter(
-        (car) => car.make === data.make.value
-      );
-      dispatch(setFilteredCars(filteredCarsToDispatch));
+      if (make || price || mileageFrom || mileageTo) {
+        let filteredCarsToDispatch =[];
+        filteredCarsToDispatch.push(...favoritesList);
+        if (make) {
+          filteredCarsToDispatch = filteredCarsToDispatch?.filter(
+            (car) => car.make === dataToDispatch.make
+          );
+        }
+        console.log(filteredCarsToDispatch);
+
+        if (price) {
+          filteredCarsToDispatch = filteredCarsToDispatch.filter(
+            (car) => +car.rentalPrice.split("$")[1] <= dataToDispatch.price
+          );
+        }
+        console.log(filteredCarsToDispatch);
+
+        if (mileageFrom) {
+          filteredCarsToDispatch = filteredCarsToDispatch.filter(
+            (car) => car.mileage >= +dataToDispatch.mileageFrom
+          );
+        }
+        console.log(filteredCarsToDispatch);
+
+        if (mileageTo) {
+          filteredCarsToDispatch = filteredCarsToDispatch.filter(
+            (car) => car.mileage <= +dataToDispatch.mileageTo
+          );
+        }
+        console.log(filteredCarsToDispatch);
+        dispatch(setFilteredCars(filteredCarsToDispatch));
+      } else {
+        toast.info("You must choose at least one field for filtering");
+      }
     }
   };
 

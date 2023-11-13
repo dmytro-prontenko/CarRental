@@ -6,7 +6,6 @@ import { ContainerStyles } from "../../General.styled";
 import GalleryItems from "../../components/GalleryItems/GalleryItems";
 import Loader from "../../components/Loader/Loader";
 import Modal from "../../components/Modal/Modal";
-import ModalCard from "../../components/ModalCard/ModalCard";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import SearchFormMobile from "../../components/SearchFormMobile/SearchFormMobile";
 import {
@@ -22,6 +21,7 @@ import {
   StyledToTopBtn,
 } from "./Catalog.styled";
 
+import { AnimatePresence, motion } from "framer-motion";
 import sprite from "../../assets/images/sprite.svg";
 import {
   selectIsLoading,
@@ -105,39 +105,75 @@ const Catalog = () => {
 
   // }, [dispatch, favoritesList, currentLocation]);
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0,
+        duration: 1,
+      },
+    },
+    exit: {
+      // x: "-100vw",
+      transition: { ease: "tween" },
+    },
+  };
+
   return (
-    <ContainerStyles>
-      {isMobile && <SearchFormMobile />}
-      {isTabletAndDesktop && <SearchForm />}
-      <GalleryWrapper>
-        {isLoadingSearch ? (
-          <Loader />
-        ) : (
-          <>
-            <StyledGalleryList>
-              <GalleryItems />
-            </StyledGalleryList>
-            {!reachOut && isLoading ? (
-              <Loader />
-            ) : !reachOut && currentLocation === "/catalog" ? (
-              <LoadMoreBtn id="loadMore" title="Load more" onClick={handleLoadMore}>Load more</LoadMoreBtn>
-            ) : null}
-          </>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <ContainerStyles>
+        {isMobile && <SearchFormMobile />}
+        {isTabletAndDesktop && <SearchForm />}
+        <GalleryWrapper>
+          {isLoadingSearch ? (
+            <Loader />
+          ) : (
+            <>
+              <StyledGalleryList>
+                <GalleryItems />
+              </StyledGalleryList>
+              {!reachOut && isLoading ? (
+                <Loader />
+              ) : !reachOut && currentLocation === "/catalog" ? (
+                <LoadMoreBtn
+                  id="loadMore"
+                  title="Load more"
+                  onClick={handleLoadMore}
+                >
+                  Load more
+                </LoadMoreBtn>
+              ) : null}
+            </>
+          )}
+        </GalleryWrapper>
+        <AnimatePresence>
+          {triggerForModal && (
+            <Modal onCloseModal={handleModalClose}>
+              {/* <ModalCard /> */}
+            </Modal>
+          )}
+          </AnimatePresence>
+        {showToTopButton && (
+          <StyledToTopBtn
+            id="backToTop"
+            title="Back to top"
+            onClick={scrollToTop}
+          >
+            <svg width="24" height="24">
+              <use href={`${sprite}#icon-up-arrow`} />
+            </svg>
+          </StyledToTopBtn>
         )}
-      </GalleryWrapper>
-      {triggerForModal && (
-        <Modal onCloseModal={handleModalClose}>
-          <ModalCard />
-        </Modal>
-      )}
-      {showToTopButton && (
-        <StyledToTopBtn id="backToTop" title="Back to top" onClick={scrollToTop}>
-          <svg width="24" height="24">
-            <use href={`${sprite}#icon-up-arrow`} />
-          </svg>
-        </StyledToTopBtn>
-      )}
-    </ContainerStyles>
+      </ContainerStyles>
+    </motion.div>
   );
 };
 

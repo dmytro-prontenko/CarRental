@@ -22,13 +22,23 @@ import {
   StyledRentTitle,
   StyledSpan,
 } from "./ModalCard.styled";
-import { selectCarsList, selectFilteredList, selectSearchedId } from "../../redux/selectors";
+import {
+  selectCarsList,
+  selectFilteredList,
+  selectSearchedId,
+} from "../../redux/selectors";
 
 const ModalCard = () => {
   const searchId = useSelector(selectSearchedId);
   const carsList = useSelector(selectCarsList);
   const filteredList = useSelector(selectFilteredList);
-  const cars = filteredList.length ? filteredList : carsList
+  const cars = filteredList.length ? filteredList : carsList;
+  const car = cars.find((car) => car.id === searchId);
+
+  if (!car) {
+    // Handle the case where the car is not found, for example, display an error message or redirect.
+    return;
+  }
   const {
     img,
     make,
@@ -45,85 +55,98 @@ const ModalCard = () => {
     accessories,
     rentalConditions,
     mileage,
-  } = cars.find((car) => car.id === searchId);
+  } = car
   return (
-    <StyledModalCard>
-      <StyledImage
-        src={img || notFoundImg}
-        alt={`${make} ${model}`}
-        onError={(e) => {
-          e.currentTarget.src = notFoundImg;
-        }}
-      />
-
-      <StyledCardHeader>
-        {make}
-        <StyledSpan>{model}, </StyledSpan>
-        {year}
-      </StyledCardHeader>
-
-      <StyledCarInfoList>
-        <StyledInfoFirstRow>
-          <StyledListItem key={nanoid()}>{address.split(", ")[1]}</StyledListItem>
-          <StyledListItem key={nanoid()}>{address.split(", ")[2]}</StyledListItem>
-          <StyledListItem key={nanoid()}>Id:{id}</StyledListItem>
-          <StyledListItem key={nanoid()}>Year:{year} </StyledListItem>
-          <StyledListItem key={nanoid()}>Type:{type}</StyledListItem>
-        </StyledInfoFirstRow>
-        <StyledInfoSecondRow>
-          <StyledListItem key={nanoid()}>Fuel Consumption:{fuelConsumption}</StyledListItem>
-          <StyledListItem key={nanoid()}>Engine Size:{engineSize}</StyledListItem>
-        </StyledInfoSecondRow>
-      </StyledCarInfoList>
-      <StyledDescription>{description}</StyledDescription>
-      <StyledAccessoriesWrapper>
-        <StyledAccessoriesTitle>
-          Accessories and functionalities:
-        </StyledAccessoriesTitle>
-        <StyledAccessoriesList>
-          {accessories.map((accessory, index) => (
-            <StyledListItem key={index}>{accessory}</StyledListItem>
-          ))}
-          {functionalities.map((accessory, index) => (
-            <StyledListItem key={index}>{accessory}</StyledListItem>
-          ))}
-        </StyledAccessoriesList>
-      </StyledAccessoriesWrapper>
-
-      <StyledRentConditions>
-        <StyledRentTitle>Rental Conditions:</StyledRentTitle>
-        <StyledConditionsList>
-          {rentalConditions.split("\n").map((condition) => (
-            <StyledConditionItem key={nanoid()}>
-              <StyledConditionWrapper>{
-                condition.includes(":")
-                ? (
-                  <span>
-                    {condition.split(":")[0]}: <StyledConditionSpan>{condition.split(":")[1]}</StyledConditionSpan>
-                  </span>
-                )
-                : condition}
+      <StyledModalCard>
+        <StyledImage
+          src={img || notFoundImg}
+          alt={`${make} ${model}`}
+          onError={(e) => {
+            e.currentTarget.src = notFoundImg;
+          }}
+        />
+        <StyledCardHeader>
+          {make}
+          <StyledSpan>{model}, </StyledSpan>
+          {year}
+        </StyledCardHeader>
+        <StyledCarInfoList>
+          <StyledInfoFirstRow>
+            <StyledListItem key={nanoid()}>
+              {address.split(", ")[1]}
+            </StyledListItem>
+            <StyledListItem key={nanoid()}>
+              {address.split(", ")[2]}
+            </StyledListItem>
+            <StyledListItem key={nanoid()}>Id:{id}</StyledListItem>
+            <StyledListItem key={nanoid()}>Year:{year} </StyledListItem>
+            <StyledListItem key={nanoid()}>Type:{type}</StyledListItem>
+          </StyledInfoFirstRow>
+          <StyledInfoSecondRow>
+            <StyledListItem key={nanoid()}>
+              Fuel Consumption:{fuelConsumption}
+            </StyledListItem>
+            <StyledListItem key={nanoid()}>
+              Engine Size:{engineSize}
+            </StyledListItem>
+          </StyledInfoSecondRow>
+        </StyledCarInfoList>
+        <StyledDescription>{description}</StyledDescription>
+        <StyledAccessoriesWrapper>
+          <StyledAccessoriesTitle>
+            Accessories and functionalities:
+          </StyledAccessoriesTitle>
+          <StyledAccessoriesList>
+            {accessories.map((accessory, index) => (
+              <StyledListItem key={index}>{accessory}</StyledListItem>
+            ))}
+            {functionalities.map((accessory, index) => (
+              <StyledListItem key={index}>{accessory}</StyledListItem>
+            ))}
+          </StyledAccessoriesList>
+        </StyledAccessoriesWrapper>
+        <StyledRentConditions>
+          <StyledRentTitle>Rental Conditions:</StyledRentTitle>
+          <StyledConditionsList>
+            {rentalConditions.split("\n").map((condition) => (
+              <StyledConditionItem key={nanoid()}>
+                <StyledConditionWrapper>
+                  {condition.includes(":") ? (
+                    <span>
+                      {condition.split(":")[0]}:{" "}
+                      <StyledConditionSpan>
+                        {condition.split(":")[1]}
+                      </StyledConditionSpan>
+                    </span>
+                  ) : (
+                    condition
+                  )}
+                </StyledConditionWrapper>
+              </StyledConditionItem>
+            ))}
+            <StyledConditionItem>
+              <StyledConditionWrapper>
+                Mileage:
+                <StyledConditionSpan>
+                  {mileage.toLocaleString("en-US")}
+                </StyledConditionSpan>
               </StyledConditionWrapper>
             </StyledConditionItem>
-          ))}
-
-          <StyledConditionItem>
-            <StyledConditionWrapper>
-              Mileage:
-              <StyledConditionSpan>
-                {mileage.toLocaleString("en-US")}
-              </StyledConditionSpan>
-            </StyledConditionWrapper>
-          </StyledConditionItem>
-          <StyledConditionItem>
-            <StyledConditionWrapper>
-              Price:<StyledConditionSpan>{rentalPrice}</StyledConditionSpan>
-            </StyledConditionWrapper>
-          </StyledConditionItem>
-        </StyledConditionsList>
-      </StyledRentConditions>
-      <StyledModalButton id="contact-button" title="Rental car" href="tel:+380730000000">Rental car</StyledModalButton>
-    </StyledModalCard>
+            <StyledConditionItem>
+              <StyledConditionWrapper>
+                Price:<StyledConditionSpan>{rentalPrice}</StyledConditionSpan>
+              </StyledConditionWrapper>
+            </StyledConditionItem>
+          </StyledConditionsList>
+        </StyledRentConditions>
+        <StyledModalButton
+          id="contact-button"
+          title="Rental car"
+          href="tel:+380730000000"
+        >
+          Rental car
+        </StyledModalButton>
+      </StyledModalCard>
   );
 };
 

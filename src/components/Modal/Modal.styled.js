@@ -19,11 +19,12 @@ export const Content = styled.div`
   height: 752px; */
   border-radius: 24px;
   background: #fff;
-  padding: 20px 35px;
+  padding: 20px 20px;
 
   @media screen and (min-width: 768px) {
     width: 541px;
     height: 752px;
+    padding: 20px 35px;
   }
 `;
 export const Childrens = styled.div`
@@ -43,14 +44,12 @@ export const StyledButtonClose = styled.button`
   top: 16px;
   right: 8px;
   background-color: transparent;
-  /* color: white; */
   border: none;
   border-radius: 8px;
 
   transition: all 0.1s ease-in;
   &:hover {
-    cursor: pointer;
-    /* box-shadow: 2px 2px 3px 1px gray; */
+    cursor: pointer;/
   }
 
   @media screen and (min-width: 768px) {

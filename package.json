@@ -13,6 +13,7 @@
     "@redux-devtools/extension": "^3.2.6",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.1",
+    "framer-motion": "^10.16.4",
     "modern-normalize": "^2.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
