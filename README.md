@@ -1,4 +1,4 @@
-### Car <span style="background-color: #3470FF">rentify</span>
+### Car <span style="color: #3470FF">rentify</span>
 
 "CarRentify" is a user-friendly web application for car rentals. Users can effortlessly explore available cars in the database by filtering based on the car's make, hourly rental cost, and mileage. The application streamlines the car rental process, offering an intuitive interface for efficiently finding and selecting the desired vehicle.
 
